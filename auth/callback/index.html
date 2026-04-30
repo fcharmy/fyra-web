@@ -20,17 +20,19 @@
       max-width: 360px;
       width: 100%;
     }
-    .checkmark {
-      width: 64px;
-      height: 64px;
+    .icon {
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
-      background: #f5c518;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 1.5rem;
       font-size: 2rem;
     }
+    .icon.success { background: #f5c518; }
+    .icon.error   { background: #fee2e2; }
+    .icon.plain   { background: #e5e0d6; }
     h1 {
       font-size: 1.5rem;
       font-weight: 700;
@@ -40,6 +42,7 @@
     p {
       color: #666;
       font-size: 0.95rem;
+      line-height: 1.5;
       margin-bottom: 2rem;
     }
     .btn {
@@ -52,29 +55,76 @@
       font-weight: 600;
       font-size: 1rem;
     }
+    .btn.secondary {
+      background: transparent;
+      color: #1a1a1a;
+      border: 1.5px solid #ccc;
+      margin-top: 0.75rem;
+      display: block;
+    }
+    .countdown {
+      margin-top: 1.25rem;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="checkmark">✓</div>
-    <h1>Email confirmed</h1>
-    <p>Your Fyra account is ready. Opening the app…</p>
+  <div class="card" id="card">
+    <div class="icon success" id="icon">✓</div>
+    <h1 id="title">Email confirmed</h1>
+    <p id="msg">Your Fyra account is ready.<br>Opening the app…</p>
     <a class="btn" id="openBtn" href="#">Open Fyra</a>
+    <p class="countdown" id="countdown"></p>
   </div>
-  <script>
-    const search = window.location.search;
-    const hash = window.location.hash;
-    const hasToken = search.includes("code=") || hash.includes("access_token=");
 
-    if (hasToken) {
-      const appUrl = "com.fyra://auth-callback" + search + hash;
-      document.getElementById("openBtn").href = appUrl;
-      setTimeout(function () { window.location.href = appUrl; }, 600);
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const hash = window.location.hash;
+
+    const code = params.get("code");
+    const accessToken = hash.includes("access_token=");
+    const error = params.get("error");
+    const errorDesc = params.get("error_description");
+
+    const icon = document.getElementById("icon");
+    const title = document.getElementById("title");
+    const msg = document.getElementById("msg");
+    const btn = document.getElementById("openBtn");
+    const countdown = document.getElementById("countdown");
+
+    if (error) {
+      icon.className = "icon error";
+      icon.textContent = "✕";
+      title.textContent = "Link expired";
+      msg.textContent = errorDesc
+        ? decodeURIComponent(errorDesc.replace(/\+/g, " "))
+        : "This confirmation link is no longer valid. Please sign up again or request a new link.";
+      btn.textContent = "Back to Fyra";
+      btn.href = "com.fyra://";
+    } else if (code || accessToken) {
+      const appUrl = "com.fyra://auth-callback" + window.location.search + hash;
+      btn.href = appUrl;
+
+      let secs = 3;
+      countdown.textContent = "Redirecting in " + secs + "s…";
+      const timer = setInterval(function () {
+        secs--;
+        if (secs <= 0) {
+          clearInterval(timer);
+          countdown.textContent = "";
+          window.location.href = appUrl;
+        } else {
+          countdown.textContent = "Redirecting in " + secs + "s…";
+        }
+      }, 1000);
     } else {
-      document.querySelector("h1").textContent = "Download Fyra";
-      document.querySelector("p").textContent = "Track your path to financial independence.";
-      document.getElementById("openBtn").textContent = "App Store";
-      document.getElementById("openBtn").href = "https://apps.apple.com";
+      icon.className = "icon plain";
+      icon.textContent = "↓";
+      title.textContent = "Download Fyra";
+      msg.textContent = "Track your path to financial independence.";
+      btn.textContent = "App Store";
+      btn.href = "https://apps.apple.com";
     }
   </script>
 </body>
