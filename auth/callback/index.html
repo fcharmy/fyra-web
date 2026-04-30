@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fyra — Email Confirmed</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      background: #F2EDE3;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      max-width: 360px;
+      width: 100%;
+    }
+    .checkmark {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #f5c518;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+    }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      color: #666;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: #1a1a1a;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="checkmark">✓</div>
+    <h1>Email confirmed</h1>
+    <p>Your Fyra account is ready. Opening the app…</p>
+    <a class="btn" id="openBtn" href="#">Open Fyra</a>
+  </div>
+  <script>
+    // Forward query params + hash (Supabase uses both depending on flow)
+    const search = window.location.search;
+    const hash = window.location.hash;
+    const appUrl = "com.fyra://auth-callback" + search + hash;
+
+    document.getElementById("openBtn").href = appUrl;
+
+    // Auto-redirect after short delay so user sees confirmation
+    setTimeout(function () {
+      window.location.href = appUrl;
+    }, 600);
+  </script>
+</body>
+</html>
