@@ -62,17 +62,20 @@
     <a class="btn" id="openBtn" href="#">Open Fyra</a>
   </div>
   <script>
-    // Forward query params + hash (Supabase uses both depending on flow)
     const search = window.location.search;
     const hash = window.location.hash;
-    const appUrl = "com.fyra://auth-callback" + search + hash;
+    const hasToken = search.includes("code=") || hash.includes("access_token=");
 
-    document.getElementById("openBtn").href = appUrl;
-
-    // Auto-redirect after short delay so user sees confirmation
-    setTimeout(function () {
-      window.location.href = appUrl;
-    }, 600);
+    if (hasToken) {
+      const appUrl = "com.fyra://auth-callback" + search + hash;
+      document.getElementById("openBtn").href = appUrl;
+      setTimeout(function () { window.location.href = appUrl; }, 600);
+    } else {
+      document.querySelector("h1").textContent = "Download Fyra";
+      document.querySelector("p").textContent = "Track your path to financial independence.";
+      document.getElementById("openBtn").textContent = "App Store";
+      document.getElementById("openBtn").href = "https://apps.apple.com";
+    }
   </script>
 </body>
 </html>
