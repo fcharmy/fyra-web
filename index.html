@@ -37,13 +37,16 @@
       margin: 0 auto;
     }
     .wordmark {
-      font-size: 1.4rem;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      color: var(--dark);
+      display: inline-flex;
+      align-items: center;
       text-decoration: none;
     }
-    .wordmark span { color: var(--gold); }
+    .wordmark img {
+      height: 36px;
+      width: 36px;
+      border-radius: 8px;
+      display: block;
+    }
     .nav-cta {
       display: inline-block;
       padding: 0.5rem 1.25rem;
@@ -432,7 +435,7 @@
 <body>
 
   <nav>
-    <a class="wordmark" href="/">fy<span>r</span>a</a>
+    <a class="wordmark" href="/"><img src="/icons/Fyra-Icon-app-light-1024.png" alt="Fyra"></a>
     <a class="nav-cta" href="https://apps.apple.com">Download</a>
   </nav>
 
@@ -561,7 +564,7 @@
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon"><img src="/icons/Fyra-Icon-buckets-1024.png" alt="Asset Buckets"></div>
+        <div class="feature-icon"><img src="/icons/Fyra-Icon-buckets-new-1024.png" alt="Asset Buckets"></div>
         <h3>Asset Buckets</h3>
         <p>Track your accounts — equities, CPF, cash, property — as buckets. Add holdings for live stock prices and dividend forecasting.</p>
         <span class="feature-tag tag-free">5 free · Unlimited on Pro</span>
@@ -670,7 +673,7 @@
   </section>
 
   <footer>
-    <a class="wordmark" href="/">fy<span>r</span>a</a>
+    <a class="wordmark" href="/"><img src="/icons/Fyra-Icon-app-light-1024.png" alt="Fyra"></a>
     <p>Track your path to financial independence.</p>
   </footer>
 
