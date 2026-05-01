@@ -81,12 +81,6 @@
       line-height: 1.1;
       margin-bottom: 1.25rem;
     }
-    .hero h1 s {
-      text-decoration: line-through;
-      text-decoration-color: var(--gold);
-      text-decoration-thickness: 3px;
-      color: #aaa;
-    }
     .hero p {
       font-size: 1.15rem;
       color: var(--mid);
@@ -126,7 +120,7 @@
       color: var(--muted);
     }
 
-    /* PRODUCT MOCK */
+    /* CALCULATOR CARD */
     .hero-mock {
       margin: 3rem auto 0;
       max-width: 360px;
@@ -136,51 +130,62 @@
       text-align: left;
       box-shadow: 0 32px 64px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.06);
     }
-    .mock-stage-pill {
-      display: inline-block;
-      padding: 0.2rem 0.65rem;
-      background: var(--gold);
-      color: #1a1a1a;
-      border-radius: 99px;
-      font-size: 0.65rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
     .mock-label {
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #555;
       margin-bottom: 0.2rem;
     }
-    .mock-networth {
-      font-size: 2rem;
+    .mock-value {
+      font-size: 1.6rem;
       font-weight: 800;
       letter-spacing: -0.03em;
       color: var(--gold);
       line-height: 1;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.5rem;
     }
-    .mock-sub {
-      font-size: 0.72rem;
-      color: #666;
-      margin-bottom: 1rem;
+    .mock-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 4px;
+      border-radius: 99px;
+      outline: none;
+      cursor: pointer;
+      margin-bottom: 1.1rem;
+      background: linear-gradient(to right, var(--gold) var(--pct, 50%), #2a2000 var(--pct, 50%));
+    }
+    .mock-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2.5px solid #0f0a00;
+      cursor: pointer;
+    }
+    .mock-slider::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2.5px solid #0f0a00;
+      cursor: pointer;
     }
     .mock-progress-track {
       height: 4px;
       background: #2a2000;
       border-radius: 99px;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.1rem;
       overflow: hidden;
     }
     .mock-progress-fill {
       height: 100%;
-      width: 68%;
       background: var(--gold);
       border-radius: 99px;
+      transition: width 0.2s ease;
     }
     .mock-pills {
       display: grid;
@@ -194,17 +199,24 @@
       text-align: center;
     }
     .mock-pill-label {
-      font-size: 0.55rem;
+      font-size: 0.52rem;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: #555;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.25rem;
     }
     .mock-pill-value {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 700;
       color: var(--gold);
+    }
+    .mock-assumption {
+      margin-top: 1rem;
+      font-size: 0.58rem;
+      color: #3a3000;
+      text-align: center;
+      letter-spacing: 0.02em;
     }
 
     /* DIVIDER */
@@ -434,7 +446,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-badge">AI-powered · iOS</div>
-    <h1>Screenshot your statement.<br>Know when you can retire.</h1>
+    <h1>Your retirement date,<br>calculated by AI.</h1>
     <p>Fyra's AI reads any brokerage or bank statement in seconds — then builds your complete forecast: net worth, cash flow, and exact years to financial independence.</p>
     <div class="hero-actions">
       <a class="btn-primary" href="https://apps.apple.com">Download on the App Store</a>
@@ -442,28 +454,96 @@
     </div>
 
     <div class="hero-mock">
-      <div class="mock-label">Net Worth</div>
-      <div class="mock-networth">SGD 847,320</div>
-      <div class="mock-sub">68% of FIRE target &nbsp;·&nbsp; 4.0% WR</div>
-      <div class="mock-progress-track"><div class="mock-progress-fill"></div></div>
+      <div class="mock-label">Current Portfolio</div>
+      <div class="mock-value" id="mockNetworth">SGD 600,000</div>
+      <input class="mock-slider" id="networthSlider" type="range" min="0" max="1500000" value="600000" step="10000">
+
+      <div class="mock-label">Monthly Savings</div>
+      <div class="mock-value" id="mockSavings">SGD 3,000</div>
+      <input class="mock-slider" id="savingsSlider" type="range" min="500" max="15000" value="3000" step="500">
+
+      <div class="mock-progress-track">
+        <div class="mock-progress-fill" id="mockProgress" style="width:50%"></div>
+      </div>
+
       <div class="mock-pills">
         <div class="mock-pill">
-          <div class="mock-pill-label">To FIRE</div>
-          <div class="mock-pill-value">8.4 yrs</div>
+          <div class="mock-pill-label">To Retire</div>
+          <div class="mock-pill-value" id="pillYears">—</div>
         </div>
         <div class="mock-pill">
-          <div class="mock-pill-label">Savings</div>
-          <div class="mock-pill-value">54%</div>
+          <div class="mock-pill-label">Still Need</div>
+          <div class="mock-pill-value" id="pillNeed">—</div>
         </div>
         <div class="mock-pill">
-          <div class="mock-pill-label">Surplus</div>
-          <div class="mock-pill-value">+$4,200</div>
+          <div class="mock-pill-label">Progress</div>
+          <div class="mock-pill-value" id="pillPct">—</div>
         </div>
       </div>
+      <div class="mock-assumption">4% rule · SGD 4k/mo spend · 7% annual return</div>
     </div>
 
     <p class="hero-sub">Free to start · iOS 17+ · No ads, ever</p>
   </section>
+
+  <script>
+    const FIRE_TARGET = 1200000; // SGD 4k/mo spend / 4% WR
+    const MONTHLY_RETURN = 0.07 / 12;
+
+    function fmtSGD(n) {
+      if (n >= 1000000) return "SGD " + (n / 1000000).toFixed(2) + "M";
+      if (n >= 1000) return "SGD " + Math.round(n / 1000) + "K";
+      return "SGD " + n;
+    }
+
+    function calcYears(pv, pmt) {
+      if (pv >= FIRE_TARGET) return 0;
+      const r = MONTHLY_RETURN;
+      if (pmt === 0) {
+        if (pv === 0) return Infinity;
+        return Math.log(FIRE_TARGET / pv) / Math.log(1 + r) / 12;
+      }
+      const n = Math.log((FIRE_TARGET + pmt / r) / (pv + pmt / r)) / Math.log(1 + r);
+      return n / 12;
+    }
+
+    function updateSlider(slider) {
+      const min = +slider.min, max = +slider.max, val = +slider.value;
+      const pct = ((val - min) / (max - min) * 100).toFixed(1) + "%";
+      slider.style.setProperty("--pct", pct);
+    }
+
+    function update() {
+      const pv = +document.getElementById("networthSlider").value;
+      const pmt = +document.getElementById("savingsSlider").value;
+
+      document.getElementById("mockNetworth").textContent = fmtSGD(pv);
+      document.getElementById("mockSavings").textContent = fmtSGD(pmt);
+
+      updateSlider(document.getElementById("networthSlider"));
+      updateSlider(document.getElementById("savingsSlider"));
+
+      const pct = Math.min(100, pv / FIRE_TARGET * 100);
+      document.getElementById("mockProgress").style.width = pct.toFixed(1) + "%";
+      document.getElementById("pillPct").textContent = pct.toFixed(0) + "%";
+
+      const stillNeed = Math.max(0, FIRE_TARGET - pv);
+      document.getElementById("pillNeed").textContent = fmtSGD(stillNeed);
+
+      const years = calcYears(pv, pmt);
+      if (years === 0) {
+        document.getElementById("pillYears").textContent = "Now 🎉";
+      } else if (!isFinite(years) || years > 99) {
+        document.getElementById("pillYears").textContent = "99+ yrs";
+      } else {
+        document.getElementById("pillYears").textContent = years.toFixed(1) + " yrs";
+      }
+    }
+
+    document.getElementById("networthSlider").addEventListener("input", update);
+    document.getElementById("savingsSlider").addEventListener("input", update);
+    update();
+  </script>
 
   <div class="divider"></div>
 
