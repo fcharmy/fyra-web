@@ -39,13 +39,20 @@
     .wordmark {
       display: inline-flex;
       align-items: center;
+      gap: 0.5rem;
       text-decoration: none;
     }
     .wordmark img {
-      height: 36px;
-      width: 36px;
-      border-radius: 8px;
+      height: 32px;
+      width: 32px;
+      border-radius: 7px;
       display: block;
+    }
+    .wordmark span {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--dark);
     }
     .nav-cta {
       display: inline-block;
@@ -435,7 +442,7 @@
 <body>
 
   <nav>
-    <a class="wordmark" href="/"><img src="/icons/Fyra-Icon-app-light-1024.png" alt="Fyra"></a>
+    <a class="wordmark" href="/"><img src="/icons/Fyra-Icon-app-light-1024.png" alt="Fyra"><span>Fyra</span></a>
     <a class="nav-cta" href="https://apps.apple.com">Download</a>
   </nav>
 
@@ -673,7 +680,7 @@
   </section>
 
   <footer>
-    <a class="wordmark" href="/"><img src="/icons/Fyra-Icon-app-light-1024.png" alt="Fyra"></a>
+    <a class="wordmark" href="/"><img src="/icons/Fyra-Icon-app-light-1024.png" alt="Fyra"><span>Fyra</span></a>
     <p>Track your path to financial independence.</p>
   </footer>
 
