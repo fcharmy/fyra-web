@@ -424,18 +424,69 @@
 
     /* FOOTER */
     footer {
-      text-align: center;
-      padding: 3rem 2rem;
       border-top: 1px solid var(--border);
+      padding: 4rem 2rem 2.5rem;
     }
-    footer .wordmark { display: block; margin-bottom: 0.5rem; }
-    footer p { font-size: 0.82rem; color: var(--muted); }
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 3rem;
+      align-items: start;
+      margin-bottom: 3rem;
+    }
+    .footer-brand p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      max-width: 220px;
+      line-height: 1.5;
+    }
+    .footer-col h4 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dark);
+      margin-bottom: 0.85rem;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .footer-col ul li a {
+      font-size: 0.88rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .footer-col ul li a:hover { color: var(--dark); }
+    .footer-bottom {
+      max-width: 900px;
+      margin: 0 auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .footer-bottom p { font-size: 0.78rem; color: var(--muted); }
+
+    @media (max-width: 600px) {
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
 
     @media (max-width: 480px) {
       nav { padding: 1rem 1.25rem; }
       .hero { padding: 3.5rem 1.25rem 3rem; }
       .features, .pricing { padding: 3.5rem 1.25rem; }
       .stages { padding: 3.5rem 1.25rem; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
     }
   </style>
 </head>
@@ -680,8 +731,30 @@
   </section>
 
   <footer>
-    <a class="wordmark" href="/"><img src="/icons/Fyra-Icon-app-dark-1024.png" alt="Fyra"><span>Fyra</span></a>
-    <p>Track your path to financial independence.</p>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="wordmark" href="/"><img src="/icons/Fyra-Icon-app-dark-1024.png" alt="Fyra"><span>Fyra</span></a>
+        <p>Track your path to financial independence. Built for serious FIRE practitioners.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="https://apps.apple.com">Download</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:contact@fyra.cc">contact@fyra.cc</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Fyra. All rights reserved.</p>
+      <p>Made in Singapore 🇸🇬</p>
+    </div>
   </footer>
 
 </body>
