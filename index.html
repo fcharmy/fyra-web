@@ -515,7 +515,7 @@
           <span class="mock-label">Annual Spending</span>
           <span class="calc-val" id="spendVal">SGD 60,000</span>
         </div>
-        <input class="mock-slider" id="spendSlider" type="range" min="10000" max="240000" step="1000" value="60000">
+        <input class="mock-slider" id="spendSlider" type="range" min="10000" max="600000" step="5000" value="60000">
       </div>
 
       <div class="calc-row">
@@ -531,7 +531,7 @@
       <div class="calc-result">
         <div class="calc-fire-label">Your FIRE Number</div>
         <div class="calc-fire-number" id="fireVal">SGD 1,500,000</div>
-        <input class="mock-slider" id="fireSlider" type="range" min="250000" max="10000000" step="50000" value="1500000">
+        <input class="mock-slider" id="fireSlider" type="range" min="250000" max="15000000" step="100000" value="1500000">
         <div class="calc-formula" id="calcFormula">SGD 60,000 ÷ 4.0% rule</div>
       </div>
     </div>
@@ -579,7 +579,7 @@
       rate = +this.value; render();
     });
     document.getElementById("fireSlider").addEventListener("input", function() {
-      spend = clamp(+this.value * (rate / 100), 10000, 240000); render();
+      spend = clamp(+this.value * (rate / 100), 10000, 600000); render();
     });
 
     render();
