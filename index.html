@@ -130,21 +130,31 @@
       text-align: left;
       box-shadow: 0 32px 64px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.06);
     }
+    .calc-header {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #666;
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.02em;
+    }
+    .calc-row { margin-bottom: 1rem; }
+    .calc-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+    }
     .mock-label {
       font-size: 0.62rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #555;
-      margin-bottom: 0.2rem;
     }
-    .mock-value {
-      font-size: 1.6rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
+    .calc-val {
+      font-size: 0.88rem;
+      font-weight: 700;
       color: var(--gold);
-      line-height: 1;
-      margin-bottom: 0.5rem;
     }
     .mock-slider {
       -webkit-appearance: none;
@@ -154,68 +164,52 @@
       border-radius: 99px;
       outline: none;
       cursor: pointer;
-      margin-bottom: 1.1rem;
-      background: linear-gradient(to right, var(--gold) var(--pct, 50%), #2a2000 var(--pct, 50%));
+      background: linear-gradient(to right, var(--gold) var(--pct, 40%), #2a2000 var(--pct, 40%));
     }
     .mock-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       background: var(--gold);
-      border: 2.5px solid #0f0a00;
+      border: 2px solid #0f0a00;
       cursor: pointer;
     }
     .mock-slider::-moz-range-thumb {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       background: var(--gold);
-      border: 2.5px solid #0f0a00;
+      border: 2px solid #0f0a00;
       cursor: pointer;
     }
-    .mock-progress-track {
-      height: 4px;
-      background: #2a2000;
-      border-radius: 99px;
-      margin-bottom: 1.1rem;
-      overflow: hidden;
+    .calc-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.05);
+      margin: 1.1rem 0;
     }
-    .mock-progress-fill {
-      height: 100%;
-      background: var(--gold);
-      border-radius: 99px;
-      transition: width 0.2s ease;
-    }
-    .mock-pills {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.5rem;
-    }
-    .mock-pill {
-      background: #1a1200;
-      border-radius: 12px;
-      padding: 0.6rem 0.5rem;
-      text-align: center;
-    }
-    .mock-pill-label {
-      font-size: 0.52rem;
+    .calc-result { text-align: center; }
+    .calc-fire-label {
+      font-size: 0.6rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #555;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.3rem;
     }
-    .mock-pill-value {
-      font-size: 0.82rem;
-      font-weight: 700;
+    .calc-fire-number {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
       color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+      transition: color 0.15s;
     }
-    .mock-assumption {
-      margin-top: 1rem;
-      font-size: 0.58rem;
+    .calc-formula {
+      margin-top: 0.6rem;
+      font-size: 0.6rem;
       color: #3a3000;
-      text-align: center;
       letter-spacing: 0.02em;
     }
 
@@ -453,95 +447,81 @@
     </div>
 
     <div class="hero-mock">
-      <div class="mock-label">Current Portfolio</div>
-      <div class="mock-value" id="mockNetworth">SGD 600,000</div>
-      <input class="mock-slider" id="networthSlider" type="range" min="0" max="1500000" value="600000" step="10000">
+      <div class="calc-header">What's your FIRE number?</div>
 
-      <div class="mock-label">Monthly Savings</div>
-      <div class="mock-value" id="mockSavings">SGD 3,000</div>
-      <input class="mock-slider" id="savingsSlider" type="range" min="500" max="15000" value="3000" step="500">
-
-      <div class="mock-progress-track">
-        <div class="mock-progress-fill" id="mockProgress" style="width:50%"></div>
+      <div class="calc-row">
+        <div class="calc-row-top">
+          <span class="mock-label">Annual Spending</span>
+          <span class="calc-val" id="spendVal">SGD 60,000</span>
+        </div>
+        <input class="mock-slider" id="spendSlider" type="range" min="10000" max="240000" step="1000" value="60000">
       </div>
 
-      <div class="mock-pills">
-        <div class="mock-pill">
-          <div class="mock-pill-label">To Retire</div>
-          <div class="mock-pill-value" id="pillYears">—</div>
+      <div class="calc-row">
+        <div class="calc-row-top">
+          <span class="mock-label">Withdrawal Rate</span>
+          <span class="calc-val" id="rateVal">4.0%</span>
         </div>
-        <div class="mock-pill">
-          <div class="mock-pill-label">Still Need</div>
-          <div class="mock-pill-value" id="pillNeed">—</div>
-        </div>
-        <div class="mock-pill">
-          <div class="mock-pill-label">Progress</div>
-          <div class="mock-pill-value" id="pillPct">—</div>
-        </div>
+        <input class="mock-slider" id="rateSlider" type="range" min="1" max="10" step="0.1" value="4">
       </div>
-      <div class="mock-assumption">4% rule · SGD 4k/mo spend · 7% annual return</div>
+
+      <div class="calc-divider"></div>
+
+      <div class="calc-result">
+        <div class="calc-fire-label">Your FIRE Number</div>
+        <div class="calc-fire-number" id="fireVal">SGD 1,500,000</div>
+        <input class="mock-slider" id="fireSlider" type="range" min="250000" max="10000000" step="50000" value="1500000">
+        <div class="calc-formula" id="calcFormula">SGD 60,000 ÷ 4.0% rule</div>
+      </div>
     </div>
 
     <p class="hero-sub">Free to start · iOS 17+ · No ads, ever</p>
   </section>
 
   <script>
-    const FIRE_TARGET = 1200000; // SGD 4k/mo spend / 4% WR
-    const MONTHLY_RETURN = 0.07 / 12;
+    var spend = 60000, rate = 4.0;
 
-    function fmtSGD(n) {
-      if (n >= 1000000) return "SGD " + (n / 1000000).toFixed(2) + "M";
-      if (n >= 1000) return "SGD " + Math.round(n / 1000) + "K";
-      return "SGD " + n;
+    function fmt(n) {
+      if (n >= 1000000) return "SGD " + (n / 1000000).toFixed(2) + "M";
+      if (n >= 1000)    return "SGD " + Math.round(n / 1000) + "K";
+      return "SGD " + n;
     }
-
-    function calcYears(pv, pmt) {
-      if (pv >= FIRE_TARGET) return 0;
-      const r = MONTHLY_RETURN;
-      if (pmt === 0) {
-        if (pv === 0) return Infinity;
-        return Math.log(FIRE_TARGET / pv) / Math.log(1 + r) / 12;
-      }
-      const n = Math.log((FIRE_TARGET + pmt / r) / (pv + pmt / r)) / Math.log(1 + r);
-      return n / 12;
+    function fmtRate(r) {
+      return (r % 1 === 0 ? r.toFixed(0) : r.toFixed(1)) + "%";
     }
-
-    function updateSlider(slider) {
-      const min = +slider.min, max = +slider.max, val = +slider.value;
-      const pct = ((val - min) / (max - min) * 100).toFixed(1) + "%";
+    function setPct(slider) {
+      var pct = ((+slider.value - +slider.min) / (+slider.max - +slider.min) * 100).toFixed(1) + "%";
       slider.style.setProperty("--pct", pct);
     }
+    function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
 
-    function update() {
-      const pv = +document.getElementById("networthSlider").value;
-      const pmt = +document.getElementById("savingsSlider").value;
+    function render() {
+      var fn = spend / (rate / 100);
+      document.getElementById("spendVal").textContent  = fmt(spend);
+      document.getElementById("rateVal").textContent   = fmtRate(rate);
+      document.getElementById("fireVal").textContent   = fmt(fn);
+      document.getElementById("calcFormula").textContent = fmt(spend) + " ÷ " + fmtRate(rate) + " rule";
 
-      document.getElementById("mockNetworth").textContent = fmtSGD(pv);
-      document.getElementById("mockSavings").textContent = fmtSGD(pmt);
-
-      updateSlider(document.getElementById("networthSlider"));
-      updateSlider(document.getElementById("savingsSlider"));
-
-      const pct = Math.min(100, pv / FIRE_TARGET * 100);
-      document.getElementById("mockProgress").style.width = pct.toFixed(1) + "%";
-      document.getElementById("pillPct").textContent = pct.toFixed(0) + "%";
-
-      const stillNeed = Math.max(0, FIRE_TARGET - pv);
-      document.getElementById("pillNeed").textContent = fmtSGD(stillNeed);
-
-      const years = calcYears(pv, pmt);
-      if (years === 0) {
-        document.getElementById("pillYears").textContent = "Now 🎉";
-      } else if (!isFinite(years) || years > 99) {
-        document.getElementById("pillYears").textContent = "99+ yrs";
-      } else {
-        document.getElementById("pillYears").textContent = years.toFixed(1) + " yrs";
-      }
+      var ss = document.getElementById("spendSlider");
+      var rs = document.getElementById("rateSlider");
+      var fs = document.getElementById("fireSlider");
+      ss.value = clamp(spend, +ss.min, +ss.max);
+      rs.value = rate;
+      fs.value = clamp(fn, +fs.min, +fs.max);
+      setPct(ss); setPct(rs); setPct(fs);
     }
 
-    document.getElementById("networthSlider").addEventListener("input", update);
-    document.getElementById("savingsSlider").addEventListener("input", update);
-    update();
+    document.getElementById("spendSlider").addEventListener("input", function() {
+      spend = +this.value; render();
+    });
+    document.getElementById("rateSlider").addEventListener("input", function() {
+      rate = +this.value; render();
+    });
+    document.getElementById("fireSlider").addEventListener("input", function() {
+      spend = clamp(+this.value * (rate / 100), 10000, 240000); render();
+    });
+
+    render();
   </script>
 
   <div class="divider"></div>
