@@ -262,19 +262,18 @@
       border: 1px solid var(--border);
     }
     .feature-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      overflow: hidden;
       margin-bottom: 1rem;
     }
-    .icon-gold { background: #fef9e6; }
-    .icon-amethyst { background: #f3eeff; }
-    .icon-dark { background: #f0f0f0; }
-    .icon-green { background: #edfaf3; }
+    .feature-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
     .feature-card h3 {
       font-size: 1rem;
       font-weight: 700;
@@ -554,42 +553,42 @@
     <div class="feature-grid">
 
       <div class="feature-card">
-        <div class="feature-icon icon-gold">🔢</div>
+        <div class="feature-icon"><img src="/icons/Fyra-Icon-calc-1024.png" alt="FIRE Calculator"></div>
         <h3>FIRE Calculator</h3>
         <p>Set your withdrawal rate, monthly savings, or target income. Recalculates instantly, works fully offline.</p>
         <span class="feature-tag tag-free">Free</span>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon icon-green">📊</div>
+        <div class="feature-icon"><img src="/icons/Fyra-Icon-cashflow-1024.png" alt="Cash Flow Forecast"></div>
         <h3>Cash Flow Forecast</h3>
         <p>See your income vs recurring expenses each month. Dividend line items, future income entries (CPF, pension), and a full year-by-year waterfall on Pro.</p>
         <span class="feature-tag tag-pro">Pro</span>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon icon-amethyst">✨</div>
+        <div class="feature-icon"><img src="/icons/Fyra-Icon-aiimport-1024.png" alt="AI Import"></div>
         <h3>AI Import</h3>
         <p>Screenshot your IBKR, brokerage, or bank statement. Claude Vision reads it in seconds — low-confidence fields are flagged for your review.</p>
         <span class="feature-tag tag-pro">Pro · 50/month</span>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon icon-dark">💱</div>
+        <div class="feature-icon"><img src="/icons/Fyra-Icon-currency-1024.png" alt="Multi-currency"></div>
         <h3>Multi-currency</h3>
         <p>SGD, USD, EUR, GBP, AUD, JPY at launch — all converted to your base currency with live FX rates. No more manual conversions.</p>
         <span class="feature-tag tag-free">Free</span>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon icon-gold">🎯</div>
+        <div class="feature-icon"><img src="/icons/Fyra-Icon-buckets-1024.png" alt="Asset Buckets"></div>
         <h3>Asset Buckets</h3>
         <p>Track your accounts — equities, CPF, cash, property — as buckets. Add holdings for live stock prices and dividend forecasting.</p>
         <span class="feature-tag tag-free">5 free · Unlimited on Pro</span>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon icon-amethyst">💡</div>
+        <div class="feature-icon"><img src="/icons/Fyra-Icon-insight-1024.png" alt="Daily Insight"></div>
         <h3>Daily Insight</h3>
         <p>One insight card per day — top spend category shift, dividend milestone, savings rate trend, or FIRE date movement. Signal, not noise.</p>
         <span class="feature-tag tag-free">Free</span>
