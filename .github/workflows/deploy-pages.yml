@@ -29,11 +29,8 @@ jobs:
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           APP_STORE_URL: ${{ secrets.APP_STORE_URL }}
         run: |
-          cat > coupon/config.js <<EOF
-const SUPABASE_URL = '${SUPABASE_URL}';
-const SUPABASE_ANON_KEY = '${SUPABASE_ANON_KEY}';
-const APP_STORE_URL = '${APP_STORE_URL}';
-EOF
+          printf "const SUPABASE_URL = '%s';\nconst SUPABASE_ANON_KEY = '%s';\nconst APP_STORE_URL = '%s';\n" \
+            "$SUPABASE_URL" "$SUPABASE_ANON_KEY" "$APP_STORE_URL" > coupon/config.js
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
