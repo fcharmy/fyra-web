@@ -254,9 +254,9 @@
     }
 
     async function init() {
-      document.getElementById('store-link').href = APP_STORE_URL;
-
       if (!code) { show('state-nocode'); return; }
+
+      document.getElementById('store-link').href = APP_STORE_URL;
 
       // If this looks like a referral code, send to the right page
       if (code.startsWith('ref_')) {

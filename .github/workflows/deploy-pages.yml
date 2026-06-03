@@ -30,7 +30,7 @@ jobs:
           APP_STORE_URL: ${{ secrets.APP_STORE_URL }}
         run: |
           printf "const SUPABASE_URL = '%s';\nconst SUPABASE_ANON_KEY = '%s';\nconst APP_STORE_URL = '%s';\n" \
-            "$SUPABASE_URL" "$SUPABASE_ANON_KEY" "$APP_STORE_URL" > coupon/config.js
+            "$SUPABASE_URL" "$SUPABASE_ANON_KEY" "$APP_STORE_URL" > refer/config.js
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
