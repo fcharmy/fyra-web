@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fyra — Bonus AI Sessions</title>
-  <meta name="description" content="You've received bonus AI sessions for Fyra, the FIRE tracker.">
-  <meta property="og:title" content="You've received bonus AI sessions on Fyra">
-  <meta property="og:description" content="Open Fyra to claim your free AI sessions and accelerate your FIRE journey.">
+  <title>Fyra — You've got bonus AI sessions</title>
+  <meta name="description" content="Claim your free AI sessions for Fyra, the FIRE tracker built for serious investors.">
+  <meta property="og:title" content="You've got bonus AI sessions on Fyra">
+  <meta property="og:description" content="Use AI to import your portfolio and track your path to financial independence.">
   <meta property="og:image" content="https://fyra.cc/icons/Fyra-Icon-app-dark-1024.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary">
@@ -16,12 +16,15 @@
     :root {
       --cream: #F2EDE3;
       --gold: #f5c518;
+      --gold-soft: #f5c51820;
       --amethyst: #b48dd6;
       --dark: #1a1a1a;
       --mid: #555;
       --muted: #888;
       --border: #ddd8ce;
+      --border-soft: #ede8df;
       --red: #e05c5c;
+      --green: #4caf7d;
     }
 
     body {
@@ -48,76 +51,127 @@
       text-decoration: none;
       color: var(--dark);
     }
-    .wordmark img {
-      height: 28px;
-      width: 28px;
-      border-radius: 6px;
-    }
-    .wordmark span {
-      font-size: 1.1rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-    }
+    .wordmark img { height: 28px; width: 28px; border-radius: 6px; }
+    .wordmark span { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.03em; }
 
     main {
       flex: 1;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      padding: 1.5rem;
+      padding: 0.5rem 1.5rem 2rem;
     }
 
     .card {
       background: #fff;
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 2.5rem 2rem;
-      max-width: 360px;
+      max-width: 380px;
       width: 100%;
+      overflow: hidden;
+    }
+
+    /* ── Loading / error / nocode (centred simple cards) ── */
+    .card.simple {
+      padding: 2.5rem 2rem;
       text-align: center;
     }
 
-    .icon-wrap {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
+    /* ── Promo card layout ── */
+    .promo-hero {
+      background: var(--dark);
+      color: #fff;
+      padding: 2rem 2rem 1.75rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .promo-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, #f5c51828 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .promo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--gold-soft);
+      border: 1px solid #f5c51844;
+      border-radius: 100px;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .promo-hero h1 {
+      font-size: 1.75rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .promo-hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .promo-hero .hero-sub {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+    }
+
+    /* ── Features ── */
+    .features {
+      padding: 1.5rem 1.75rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+    .feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+    }
+    .feat-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-size: 2rem;
+      font-size: 1.1rem;
+      flex-shrink: 0;
     }
-    .icon-wrap.gift    { background: #f5c51822; }
-    .icon-wrap.error   { background: #e05c5c18; }
-    .icon-wrap.loading { background: #88888818; }
-
-    h1 {
-      font-size: 1.5rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      margin-bottom: 0.5rem;
-    }
-    .subtitle {
-      font-size: 0.95rem;
-      color: var(--mid);
-      margin-bottom: 2rem;
-      line-height: 1.5;
-    }
-    .count-badge {
-      display: inline-block;
-      font-size: 2.5rem;
-      font-weight: 900;
-      letter-spacing: -0.04em;
+    .feat-icon.ai       { background: #b48dd618; }
+    .feat-icon.fire     { background: #f5c51818; }
+    .feat-icon.currency { background: #4caf7d18; }
+    .feat-icon.chart    { background: #5b8def18; }
+    .feat-body { flex: 1; }
+    .feat-title {
+      font-size: 0.9rem;
+      font-weight: 700;
       color: var(--dark);
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.15rem;
     }
-    .count-label {
-      font-size: 0.85rem;
+    .feat-desc {
+      font-size: 0.82rem;
       color: var(--muted);
-      margin-bottom: 1.75rem;
+      line-height: 1.4;
     }
 
+    /* ── CTAs ── */
+    .cta-wrap {
+      padding: 1.5rem 1.75rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
     .btn-primary {
       display: block;
       width: 100%;
@@ -130,11 +184,10 @@
       font-weight: 700;
       cursor: pointer;
       text-decoration: none;
+      text-align: center;
       transition: opacity 0.15s;
-      margin-bottom: 0.75rem;
     }
     .btn-primary:hover { opacity: 0.85; }
-
     .btn-secondary {
       display: block;
       width: 100%;
@@ -147,26 +200,40 @@
       font-weight: 600;
       cursor: pointer;
       text-decoration: none;
+      text-align: center;
       transition: border-color 0.15s;
     }
     .btn-secondary:hover { border-color: #aaa; }
-
     .note {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--muted);
-      margin-top: 1.5rem;
+      text-align: center;
       line-height: 1.5;
     }
 
+    /* ── Simple card shared styles ── */
+    .icon-wrap {
+      width: 72px; height: 72px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem; font-size: 2rem;
+    }
+    .icon-wrap.error   { background: #e05c5c18; }
+    .icon-wrap.loading { background: #88888818; }
+    .icon-wrap.muted   { background: #f5c51818; }
+    .simple h1 {
+      font-size: 1.5rem; font-weight: 800; letter-spacing: -0.03em;
+      line-height: 1.2; margin-bottom: 0.5rem;
+    }
+    .simple .subtitle {
+      font-size: 0.95rem; color: var(--mid); margin-bottom: 2rem; line-height: 1.5;
+    }
+    .simple .btn-primary { margin-bottom: 0.75rem; }
+
     @keyframes spin { to { transform: rotate(360deg); } }
     .spinner {
-      width: 28px;
-      height: 28px;
-      border: 3px solid var(--border);
-      border-top-color: var(--dark);
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      margin: 0 auto;
+      width: 28px; height: 28px;
+      border: 3px solid var(--border); border-top-color: var(--dark);
+      border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto;
     }
 
     .hidden { display: none !important; }
@@ -182,26 +249,61 @@
   </nav>
 
   <main>
+
     <!-- Loading -->
-    <div class="card" id="state-loading">
+    <div class="card simple" id="state-loading">
       <div class="icon-wrap loading"><div class="spinner"></div></div>
       <p class="subtitle">Checking your code…</p>
     </div>
 
     <!-- Valid promo code -->
     <div class="card hidden" id="state-valid">
-      <div class="icon-wrap gift">🎁</div>
-      <div class="count-badge" id="promo-count"></div>
-      <div class="count-label">bonus AI sessions</div>
-      <h1>Free AI sessions<br>for your FIRE journey</h1>
-      <p class="subtitle">Open Fyra to claim them. New to Fyra? Download it free — the sessions will be waiting.</p>
-      <button class="btn-primary" onclick="openApp()">Open in Fyra</button>
-      <a class="btn-secondary" id="store-link" href="#">Download Fyra</a>
-      <p class="note">Sessions are added instantly when the app opens. Free to download · iOS only</p>
+      <div class="promo-hero">
+        <div class="promo-badge">🎁 <span id="promo-count-inline">—</span> free AI sessions unlocked</div>
+        <h1>Your FIRE journey<br>starts <em>now</em></h1>
+        <p class="hero-sub">You've got bonus AI sessions for Fyra — the FIRE tracker built for serious investors.</p>
+      </div>
+
+      <div class="features">
+        <div class="feature">
+          <div class="feat-icon ai">🤖</div>
+          <div class="feat-body">
+            <div class="feat-title">AI portfolio import</div>
+            <div class="feat-desc">Screenshot your broker app — AI reads and imports your holdings instantly</div>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feat-icon fire">🔥</div>
+          <div class="feat-body">
+            <div class="feat-title">FIRE number & date</div>
+            <div class="feat-desc">Know exactly when you can retire with the 4% rule calculator</div>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feat-icon currency">💱</div>
+          <div class="feat-body">
+            <div class="feat-title">Multi-currency dashboard</div>
+            <div class="feat-desc">Track assets in any currency — stocks, crypto, real estate — in one view</div>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feat-icon chart">📊</div>
+          <div class="feat-body">
+            <div class="feat-title">Cash flow forecast</div>
+            <div class="feat-desc">See every income and expense mapped to your path to financial independence</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-wrap">
+        <button class="btn-primary" onclick="openApp()">Claim in Fyra</button>
+        <a class="btn-secondary" id="store-link" href="#">Download Free — iOS</a>
+        <p class="note">Sessions activate instantly when the app opens</p>
+      </div>
     </div>
 
     <!-- Invalid / expired / maxed -->
-    <div class="card hidden" id="state-invalid">
+    <div class="card simple hidden" id="state-invalid">
       <div class="icon-wrap error">✕</div>
       <h1 id="invalid-title">This code has expired</h1>
       <p class="subtitle" id="invalid-subtitle">This code is no longer valid. Check if you have another.</p>
@@ -209,12 +311,13 @@
     </div>
 
     <!-- No code in URL -->
-    <div class="card hidden" id="state-nocode">
-      <div class="icon-wrap gift">🔥</div>
+    <div class="card simple hidden" id="state-nocode">
+      <div class="icon-wrap muted">🔥</div>
       <h1>Track your FIRE<br>number</h1>
       <p class="subtitle">Fyra is the FIRE tracker for serious investors. Multi-currency, stage-aware, AI-powered.</p>
       <a class="btn-primary" href="https://fyra.cc">Learn more</a>
     </div>
+
   </main>
 
   <script src="../refer/config.js"></script>
@@ -263,9 +366,9 @@
 
         if (!data.valid) {
           const titles = {
-            invalid_code:    ['This code is invalid', 'This code doesn\'t exist.'],
-            expired:         ['This code has expired', 'This code is no longer active.'],
-            max_uses_reached:['This code is no longer available', 'All sessions from this code have been claimed.']
+            invalid_code:     ['This code is invalid',          "This code doesn't exist."],
+            expired:          ['This code has expired',         'This code is no longer active.'],
+            max_uses_reached: ['This code is fully claimed',    'All sessions from this code have been taken.']
           };
           const [title, subtitle] = titles[data.error] || ['This code is invalid', 'Something went wrong.'];
           document.getElementById('invalid-title').textContent = title;
@@ -274,17 +377,16 @@
           return;
         }
 
-        // Referral codes that somehow land here — redirect
         if (data.is_referral) {
           window.location.replace('/refer/?code=' + encodeURIComponent(code));
           return;
         }
 
-        document.getElementById('promo-count').textContent = data.bonus_invocations;
+        document.getElementById('promo-count-inline').textContent = data.bonus_invocations;
         show('state-valid');
 
       } catch {
-        document.getElementById('promo-count').textContent = '?';
+        document.getElementById('promo-count-inline').textContent = '?';
         show('state-valid');
       }
     }
