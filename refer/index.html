@@ -197,18 +197,6 @@
       <p class="subtitle">Checking your code…</p>
     </div>
 
-    <!-- Valid coupon (promo code) -->
-    <div class="card hidden" id="state-valid-promo">
-      <div class="icon-wrap gift">🎁</div>
-      <div class="count-badge" id="promo-count"></div>
-      <div class="count-label">bonus AI sessions</div>
-      <h1>Free AI sessions<br>for your FIRE journey</h1>
-      <p class="subtitle">Open Fyra to claim them. New to Fyra? Download it free and the sessions will be waiting.</p>
-      <button class="btn-primary" onclick="openApp('promo')">Open in Fyra</button>
-      <a class="btn-secondary" id="store-link-promo" href="#">Download Fyra</a>
-      <p class="note">Sessions are added instantly when the app opens. Free to download · iOS only</p>
-    </div>
-
     <!-- Valid referral -->
     <div class="card hidden" id="state-valid-referral">
       <div class="icon-wrap referral">✨</div>
@@ -216,7 +204,7 @@
       <div class="count-label">bonus AI sessions</div>
       <h1>Your friend invited<br>you to Fyra</h1>
       <p class="subtitle">You've been gifted bonus AI sessions. Open Fyra to claim them — or download it free.</p>
-      <button class="btn-primary" onclick="openApp('referral')">Open in Fyra</button>
+      <button class="btn-primary" onclick="openApp()">Open in Fyra</button>
       <a class="btn-secondary" id="store-link-referral" href="#">Download Fyra</a>
       <p class="note">Sessions are added instantly when the app opens. Free to download · iOS only</p>
     </div>
@@ -225,16 +213,16 @@
     <div class="card hidden" id="state-invalid">
       <div class="icon-wrap error">✕</div>
       <h1 id="invalid-title">This link has expired</h1>
-      <p class="subtitle" id="invalid-subtitle">This code is no longer valid. Ask your friend for a fresh link.</p>
+      <p class="subtitle" id="invalid-subtitle">This link is no longer valid. Ask your friend for a fresh one.</p>
       <a class="btn-primary" href="https://fyra.cc">Learn about Fyra</a>
     </div>
 
     <!-- No code in URL -->
     <div class="card hidden" id="state-nocode">
-      <div class="icon-wrap gift">🔥</div>
-      <h1>Track your FIRE<br>number</h1>
-      <p class="subtitle">Fyra is the FIRE tracker for serious investors. Multi-currency, stage-aware, AI-powered.</p>
-      <a class="btn-primary" href="https://fyra.cc">Learn more</a>
+      <div class="icon-wrap referral">✨</div>
+      <h1>Share Fyra with<br>your friends</h1>
+      <p class="subtitle">Invite friends to Fyra and you both get bonus AI sessions. Open the app to generate your link.</p>
+      <a class="btn-primary" href="https://fyra.cc">Learn about Fyra</a>
     </div>
   </main>
 
@@ -244,24 +232,14 @@
     const params = new URLSearchParams(window.location.search);
     const code = params.get('code');
     let resolvedCode = code;
-    let isReferral = false;
 
     function show(id) {
-      ['state-loading','state-valid-promo','state-valid-referral','state-invalid','state-nocode']
+      ['state-loading','state-valid-referral','state-invalid','state-nocode']
         .forEach(s => document.getElementById(s).classList.toggle('hidden', s !== id));
     }
 
-    function setStoreLinks(url) {
-      document.getElementById('store-link-promo').href = url;
-      document.getElementById('store-link-referral').href = url;
-    }
-
-    function openApp(type) {
-      const scheme = type === 'referral' ? 'fyra://refer' : 'fyra://redeem';
-      const deepLink = `${scheme}?code=${encodeURIComponent(resolvedCode)}`;
-
-      // Try opening the app; fall back to App Store after a short delay
-      // if the app isn't installed (page stays visible)
+    function openApp() {
+      const deepLink = `fyra://refer?code=${encodeURIComponent(resolvedCode)}`;
       const start = Date.now();
       window.location.href = deepLink;
       setTimeout(() => {
@@ -286,7 +264,7 @@
     }
 
     async function init() {
-      setStoreLinks(APP_STORE_URL);
+      document.getElementById('store-link-referral').href = APP_STORE_URL;
 
       if (!code) { show('state-nocode'); return; }
 
@@ -306,27 +284,12 @@
           return;
         }
 
-        isReferral = data.is_referral;
-        const count = data.bonus_invocations;
-
-        if (isReferral) {
-          document.getElementById('referral-count').textContent = count;
-          show('state-valid-referral');
-        } else {
-          document.getElementById('promo-count').textContent = count;
-          show('state-valid-promo');
-        }
+        document.getElementById('referral-count').textContent = data.bonus_invocations;
+        show('state-valid-referral');
 
       } catch {
-        // If Supabase config isn't filled in yet or network fails, infer type from code prefix
-        const looksLikeReferral = resolvedCode && resolvedCode.startsWith('ref_');
-        if (looksLikeReferral) {
-          document.getElementById('referral-count').textContent = '?';
-          show('state-valid-referral');
-        } else {
-          document.getElementById('promo-count').textContent = '?';
-          show('state-valid-promo');
-        }
+        document.getElementById('referral-count').textContent = '?';
+        show('state-valid-referral');
       }
     }
 
