@@ -139,19 +139,18 @@
       gap: 0.9rem;
     }
     .feat-icon {
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
+      overflow: hidden;
       flex-shrink: 0;
     }
-    .feat-icon.ai       { background: #b48dd618; }
-    .feat-icon.fire     { background: #f5c51818; }
-    .feat-icon.currency { background: #4caf7d18; }
-    .feat-icon.chart    { background: #5b8def18; }
+    .feat-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
     .feat-body { flex: 1; }
     .feat-title {
       font-size: 0.9rem;
@@ -266,28 +265,28 @@
 
       <div class="features">
         <div class="feature">
-          <div class="feat-icon ai">🤖</div>
+          <div class="feat-icon"><img src="../icons/Fyra-Icon-aiimport-1024.png" alt="AI Import"></div>
           <div class="feat-body">
             <div class="feat-title">AI portfolio import</div>
             <div class="feat-desc">Screenshot your broker app — AI reads and imports your holdings instantly</div>
           </div>
         </div>
         <div class="feature">
-          <div class="feat-icon fire">🔥</div>
+          <div class="feat-icon"><img src="../icons/Fyra-Icon-calc-1024.png" alt="FIRE Calculator"></div>
           <div class="feat-body">
             <div class="feat-title">FIRE number & date</div>
             <div class="feat-desc">Know exactly when you can retire with the 4% rule calculator</div>
           </div>
         </div>
         <div class="feature">
-          <div class="feat-icon currency">💱</div>
+          <div class="feat-icon"><img src="../icons/Fyra-Icon-currency-1024.png" alt="Multi-currency"></div>
           <div class="feat-body">
             <div class="feat-title">Multi-currency dashboard</div>
             <div class="feat-desc">Track assets in any currency — stocks, crypto, real estate — in one view</div>
           </div>
         </div>
         <div class="feature">
-          <div class="feat-icon chart">📊</div>
+          <div class="feat-icon"><img src="../icons/Fyra-Icon-cashflow-1024.png" alt="Cash Flow"></div>
           <div class="feat-body">
             <div class="feat-title">Cash flow forecast</div>
             <div class="feat-desc">See every income and expense mapped to your path to financial independence</div>
