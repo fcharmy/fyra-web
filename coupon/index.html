@@ -258,12 +258,6 @@
 
       document.getElementById('store-link').href = APP_STORE_URL;
 
-      // If this looks like a referral code, send to the right page
-      if (code.startsWith('ref_')) {
-        window.location.replace('/refer/?code=' + encodeURIComponent(code));
-        return;
-      }
-
       try {
         const data = await checkCoupon(code);
 
