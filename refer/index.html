@@ -177,6 +177,40 @@
       margin: 0 auto;
     }
 
+    /* ── Code chip ── */
+    .code-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f7f4ee;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.55rem 0.75rem 0.55rem 1rem;
+      margin-bottom: 1.5rem;
+      gap: 0.75rem;
+    }
+    .code-text {
+      font-family: "SF Mono", "Menlo", monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--dark);
+    }
+    .code-copy {
+      background: var(--dark);
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.15s;
+      flex-shrink: 0;
+    }
+    .code-copy:hover { opacity: 0.8; }
+
     /* ── Hidden ── */
     .hidden { display: none !important; }
   </style>
@@ -218,10 +252,14 @@
         </svg>
       </div>
       <h1>Your friend invited you<br>to Fyra</h1>
-      <p class="subtitle">They sent you <strong id="referral-count-inline"></strong> bonus AI sessions on Fyra as a welcome gift. Open the app to claim them.</p>
+      <p class="subtitle">They sent you <strong id="referral-count-inline"></strong> bonus AI sessions on Fyra as a welcome gift.</p>
+      <div class="code-row">
+        <span class="code-text" id="code-display">—</span>
+        <button class="code-copy" id="copy-btn" onclick="copyCode()">Copy code</button>
+      </div>
       <button class="btn-primary" onclick="openApp()">Open in Fyra</button>
-      <a class="btn-secondary" id="store-link-referral" href="#">Download Fyra</a>
-      <p class="note">Sessions are added instantly when the app opens. Free to download · iOS only</p>
+      <a class="btn-secondary" id="store-link-referral" href="#" onclick="copyAndStore(event)">Download Fyra</a>
+      <p class="note">Open in Fyra to claim instantly. Don't have it? Download free — your code is saved to clipboard.</p>
     </div>
 
     <!-- Invalid / expired / maxed -->
@@ -253,12 +291,26 @@
         .forEach(s => document.getElementById(s).classList.toggle('hidden', s !== id));
     }
 
+    function copyCode() {
+      navigator.clipboard.writeText(resolvedCode).catch(() => {});
+      const btn = document.getElementById('copy-btn');
+      btn.textContent = '✓ Copied';
+      setTimeout(() => { btn.textContent = 'Copy code'; }, 2000);
+    }
+
+    function copyAndStore(e) {
+      e.preventDefault();
+      navigator.clipboard.writeText(resolvedCode).catch(() => {});
+      setTimeout(() => { window.location.href = APP_STORE_URL; }, 300);
+    }
+
     function openApp() {
       const deepLink = `fyra://refer?code=${encodeURIComponent(resolvedCode)}`;
       const start = Date.now();
       window.location.href = deepLink;
       setTimeout(() => {
         if (Date.now() - start < 2000 && !document.hidden) {
+          navigator.clipboard.writeText(resolvedCode).catch(() => {});
           window.location.href = APP_STORE_URL;
         }
       }, 1500);
@@ -300,10 +352,12 @@
         }
 
         document.getElementById('referral-count-inline').textContent = data.bonus_invocations;
+        document.getElementById('code-display').textContent = resolvedCode;
         show('state-valid-referral');
 
       } catch {
         document.getElementById('referral-count-inline').textContent = '?';
+        document.getElementById('code-display').textContent = resolvedCode;
         show('state-valid-referral');
       }
     }

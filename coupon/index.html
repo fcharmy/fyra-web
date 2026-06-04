@@ -296,8 +296,8 @@
 
       <div class="cta-wrap">
         <button class="btn-primary" onclick="openApp()">Claim in Fyra</button>
-        <a class="btn-secondary" id="store-link" href="#">Download Free — iOS</a>
-        <p class="note">Sessions activate instantly when the app opens</p>
+        <a class="btn-secondary" id="store-link" href="#" onclick="copyAndStore(event)">Download Free — iOS</a>
+        <p class="note">Open in Fyra to claim instantly. No app? Download free — your code is copied to clipboard.</p>
       </div>
     </div>
 
@@ -330,12 +330,23 @@
         .forEach(s => document.getElementById(s).classList.toggle('hidden', s !== id));
     }
 
+    function copyCode() {
+      navigator.clipboard.writeText(resolvedCode).catch(() => {});
+    }
+
+    function copyAndStore(e) {
+      e.preventDefault();
+      copyCode();
+      setTimeout(() => { window.location.href = APP_STORE_URL; }, 300);
+    }
+
     function openApp() {
       const deepLink = `fyra://redeem?code=${encodeURIComponent(resolvedCode)}`;
       const start = Date.now();
       window.location.href = deepLink;
       setTimeout(() => {
         if (Date.now() - start < 2000 && !document.hidden) {
+          copyCode();
           window.location.href = APP_STORE_URL;
         }
       }, 1500);
