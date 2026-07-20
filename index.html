@@ -703,7 +703,6 @@
           <li>FIRE Calculator</li>
           <li>5 asset buckets · 20 holdings</li>
           <li>Expense tracking</li>
-          <li>Basic cash flow forecast</li>
           <li>Goal tracking</li>
           <li>AI import trial</li>
           <li>Live stock prices + dividends</li>
@@ -716,8 +715,8 @@
 
       <div class="pricing-card pro">
         <p class="plan-name">Pro</p>
-        <p class="plan-price">$3.99<span style="font-size:1rem;font-weight:500"> / month</span></p>
-        <p class="plan-sub">Or $39.99 / year — save over 16%.</p>
+        <p class="plan-price" id="pro-price">$3.99<span style="font-size:1rem;font-weight:500"> / month</span></p>
+        <p class="plan-sub" id="pro-annual">Or $39.99 / year — save over 16%.</p>
         <ul class="plan-features">
           <li>Everything in Free, plus:</li>
           <li>Unlimited assets and holdings</li>
@@ -761,6 +760,45 @@
       <p>Made in Singapore 🇸🇬</p>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var tiers = {
+        SG: { monthly: "S$5.98",  annual: "S$58.98",  pct: "17%" },
+        CN: { monthly: "¥28",     annual: "¥268",     pct: "20%" },
+        HK: { monthly: "HK$28",  annual: "HK$278",   pct: "17%" },
+        JP: { monthly: "¥600",   annual: "¥5800",    pct: "19%" },
+        AU: { monthly: "A$6.49", annual: "A$59.99",  pct: "23%" },
+        GB: { monthly: "£3.49",  annual: "£34.99",   pct: "16%" },
+        DE: { monthly: "€3.99",  annual: "€39.99",   pct: "16%" },
+        FR: { monthly: "€3.99",  annual: "€39.99",   pct: "16%" },
+        IT: { monthly: "€3.99",  annual: "€39.99",   pct: "16%" },
+        ES: { monthly: "€3.99",  annual: "€39.99",   pct: "16%" },
+        NL: { monthly: "€3.99",  annual: "€39.99",   pct: "16%" },
+        AT: { monthly: "€3.99",  annual: "€39.99",   pct: "16%" },
+      };
+      var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+      var tzMap = {
+        "Asia/Singapore": "SG", "Asia/Shanghai": "CN", "Asia/Chongqing": "CN",
+        "Asia/Hong_Kong": "HK", "Asia/Tokyo": "JP",
+        "Australia/Sydney": "AU", "Australia/Melbourne": "AU", "Australia/Brisbane": "AU",
+        "Europe/London": "GB",
+        "Europe/Berlin": "DE", "Europe/Paris": "FR", "Europe/Rome": "IT",
+        "Europe/Madrid": "ES", "Europe/Amsterdam": "NL", "Europe/Vienna": "AT",
+      };
+      var region = tzMap[tz];
+      if (!region) {
+        var lang = (navigator.language || "").split("-");
+        if (lang.length > 1) region = lang[1].toUpperCase();
+      }
+      var tier = region && tiers[region];
+      if (!tier) return;
+      var priceEl = document.getElementById("pro-price");
+      var annualEl = document.getElementById("pro-annual");
+      if (priceEl) priceEl.innerHTML = tier.monthly + '<span style="font-size:1rem;font-weight:500"> / month</span>';
+      if (annualEl) annualEl.textContent = "Or " + tier.annual + " / year — save over " + tier.pct + ".";
+    })();
+  </script>
 
 </body>
 </html>
