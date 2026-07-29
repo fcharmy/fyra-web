@@ -104,9 +104,9 @@
         ? decodeURIComponent(errorDesc.replace(/\+/g, " "))
         : "This confirmation link is no longer valid. Please sign up again or request a new link.";
       btn.textContent = "Back to Fyra";
-      btn.href = "com.fyra://";
+      btn.href = "cc.fyra.app://";
     } else if (code || accessToken) {
-      const appUrl = "com.fyra://auth-callback" + window.location.search + hash;
+      const appUrl = "cc.fyra.app://auth-callback" + window.location.search + hash;
       btn.href = appUrl;
 
       let secs = 3;

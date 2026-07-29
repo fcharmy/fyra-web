@@ -308,7 +308,7 @@
     }
 
     function openApp() {
-      const deepLink = `fyra://refer?code=${encodeURIComponent(resolvedCode)}`;
+      const deepLink = `cc.fyra.app://refer?code=${encodeURIComponent(resolvedCode)}`;
       const start = Date.now();
       window.location.href = deepLink;
       setTimeout(() => {

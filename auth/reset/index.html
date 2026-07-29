@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reset your Fyra password</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      background: #f2ede3;
+      color: #1a1a1a;
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+    main { width: min(100%, 380px); text-align: center; }
+    .icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 20px;
+      background: #f5c51824;
+      font-size: 32px;
+    }
+    h1 { font-size: 24px; margin-bottom: 10px; }
+    p { color: #666; line-height: 1.55; margin-bottom: 26px; }
+    a {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 14px;
+      background: #1a1a1a;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="icon">🔑</div>
+    <h1 id="title">Reset your password</h1>
+    <p id="message">Open Fyra to choose a new password.</p>
+    <a id="open-app" href="cc.fyra.app://auth-reset">Open Fyra</a>
+  </main>
+  <script>
+    const query = window.location.search;
+    const hash = window.location.hash;
+    const params = new URLSearchParams(query);
+    const fragment = new URLSearchParams(hash.replace(/^#/, ""));
+    const error = params.get("error_description") || fragment.get("error_description");
+    const tokenHash = params.get("token_hash") || fragment.get("token_hash");
+    const appURL = "cc.fyra.app://auth-reset" + query + hash;
+    const button = document.getElementById("open-app");
+
+    if (error || !tokenHash) {
+      document.getElementById("title").textContent = "Reset link expired";
+      document.getElementById("message").textContent =
+        error || "This password reset link is invalid or incomplete. Request a new link in Fyra.";
+      button.textContent = "Back to Fyra";
+      button.href = "cc.fyra.app://";
+    } else {
+      button.href = appURL;
+      setTimeout(function () { window.location.href = appURL; }, 600);
+    }
+  </script>
+</body>
+</html>

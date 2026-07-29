@@ -1,0 +1,30 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": [
+          "4T8742UW33.cc.fyra.app"
+        ],
+        "components": [
+          {
+            "/": "/auth/reset",
+            "comment": "Password recovery without a trailing slash"
+          },
+          {
+            "/": "/auth/reset/*",
+            "comment": "Password recovery"
+          },
+          {
+            "/": "/auth/callback",
+            "comment": "Email confirmation without a trailing slash"
+          },
+          {
+            "/": "/auth/callback/*",
+            "comment": "Email confirmation"
+          }
+        ]
+      }
+    ]
+  }
+}
