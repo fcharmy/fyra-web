@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hans">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Reset your Fyra password</title>
+  <title>重置你的 Fyra 密码</title>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -49,9 +49,9 @@
 <body>
   <main>
     <div class="icon">🔑</div>
-    <h1 id="title">Reset your password</h1>
-    <p id="message">Open Fyra to choose a new password.</p>
-    <a id="open-app" href="cc.fyra.app://auth-reset">Open Fyra</a>
+    <h1 id="title">重置密码</h1>
+    <p id="message">打开 Fyra 设置新密码。</p>
+    <a id="open-app" href="cc.fyra.app://auth-reset">打开 Fyra</a>
   </main>
   <script>
     const query = window.location.search;
@@ -64,10 +64,10 @@
     const button = document.getElementById("open-app");
 
     if (error || !tokenHash) {
-      document.getElementById("title").textContent = "Reset link expired";
+      document.getElementById("title").textContent = "重置链接已过期";
       document.getElementById("message").textContent =
-        error || "This password reset link is invalid or incomplete. Request a new link in Fyra.";
-      button.textContent = "Back to Fyra";
+        error || "此密码重置链接无效或不完整。请在 Fyra 中重新请求。";
+      button.textContent = "返回 Fyra";
       button.href = "cc.fyra.app://";
     } else {
       button.href = appURL;

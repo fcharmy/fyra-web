@@ -8,6 +8,10 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="alternate" hreflang="en" href="https://fyra.cc/privacy/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://fyra.cc/zh-hans/privacy/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://fyra.cc/zh-hant/privacy/">
+  <link rel="alternate" hreflang="x-default" href="https://fyra.cc/privacy/">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -134,6 +138,30 @@
       font-weight: 600;
       margin-left: 1rem;
     }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+    .lang-switch a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .lang-switch a:hover {
+      color: var(--dark);
+    }
+    .lang-switch span {
+      font-weight: 600;
+      color: var(--dark);
+    }
+
     @media (max-width: 560px) {
       nav, main, footer { padding-left: 1.25rem; padding-right: 1.25rem; }
       .hero { padding-top: 2.75rem; }
@@ -145,7 +173,14 @@
 <body>
   <nav>
     <a class="wordmark" href="/"><img src="/icons/Fyra-Icon-app-dark-1024.png" alt="Fyra"><span>Fyra</span></a>
-    <a class="nav-link" href="/">Home</a>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <span>EN</span>
+        <a href="/zh-hans/privacy/">简体</a>
+        <a href="/zh-hant/privacy/">繁體</a>
+      </div>
+      <a class="nav-link" href="/">Home</a>
+    </div>
   </nav>
 
   <main>

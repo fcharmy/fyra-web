@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fyra — Email Confirmed</title>
+  <title>Fyra — 電子郵件已確認</title>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -79,9 +79,9 @@
 <body>
   <div class="card" id="card">
     <div class="icon success" id="icon">✓</div>
-    <h1 id="title">Email confirmed</h1>
-    <p id="msg">Your Fyra account is ready.<br>Opening the app…</p>
-    <a class="btn" id="openBtn" href="#">Open Fyra</a>
+    <h1 id="title">電子郵件已確認</h1>
+    <p id="msg">你的 Fyra 帳戶已準備就緒。<br>正在開啟應用程式…</p>
+    <a class="btn" id="openBtn" href="#">開啟 Fyra</a>
     <p class="countdown" id="countdown"></p>
   </div>
 
@@ -103,18 +103,18 @@
     if (error) {
       icon.className = "icon error";
       icon.textContent = "✕";
-      title.textContent = "Link expired";
+      title.textContent = "連結已過期";
       msg.textContent = errorDesc
         ? decodeURIComponent(errorDesc.replace(/\+/g, " "))
-        : "This confirmation link is no longer valid. Please sign up again or request a new link.";
-      btn.textContent = "Back to Fyra";
+        : "此確認連結已失效。請重新註冊或申請新的連結。";
+      btn.textContent = "返回 Fyra";
       btn.href = "cc.fyra.app://";
     } else if (code || accessToken) {
       const appUrl = "cc.fyra.app://auth-callback" + window.location.search + hash;
       btn.href = appUrl;
 
       let secs = 3;
-      countdown.textContent = "Redirecting in " + secs + "s…";
+      countdown.textContent = secs + " 秒後跳轉…";
       const timer = setInterval(function () {
         secs--;
         if (secs <= 0) {
@@ -122,14 +122,14 @@
           countdown.textContent = "";
           window.location.href = appUrl;
         } else {
-          countdown.textContent = "Redirecting in " + secs + "s…";
+          countdown.textContent = secs + " 秒後跳轉…";
         }
       }, 1000);
     } else {
       icon.className = "icon plain";
       icon.textContent = "↓";
-      title.textContent = "Download Fyra";
-      msg.textContent = "Track your path to financial independence.";
+      title.textContent = "下載 Fyra";
+      msg.textContent = "追蹤你通往財務自由的道路。";
       btn.textContent = "App Store";
       btn.href = "https://apps.apple.com";
     }

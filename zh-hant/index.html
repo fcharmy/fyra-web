@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Fyra is the FIRE tracker for serious investors. Multi-currency, stage-aware, AI-powered.">
-  <title>Fyra — FIRE Tracker</title>
+  <meta name="description" content="Fyra 是專為認真投資者打造的 FIRE 追蹤工具。多幣種、階段感知、AI 驅動。">
+  <title>Fyra — FIRE 追蹤工具</title>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -70,6 +70,29 @@
       border-radius: 10px;
       font-size: 0.9rem;
       font-weight: 600;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+    .lang-switch a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .lang-switch a:hover {
+      color: var(--dark);
+    }
+    .lang-switch span {
+      font-weight: 600;
+      color: var(--dark);
     }
 
     /* HERO */
@@ -425,7 +448,7 @@
       align-items: flex-start;
     }
     .pricing-card.pro .plan-features li { color: #ccc; }
-    .plan-features li::before { content: "✓"; font-weight: 700; flex-shrink: 0; }
+    .plan-features li::before { content: "\2713"; font-weight: 700; flex-shrink: 0; }
     .pricing-card .plan-features li::before { color: var(--gold); }
     .pricing-card.pro .plan-features li::before { color: var(--gold); }
 
@@ -488,30 +511,6 @@
       .footer-bottom { flex-direction: column; align-items: flex-start; }
     }
 
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .lang-switch {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-    }
-    .lang-switch a {
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .lang-switch a:hover {
-      color: var(--dark);
-    }
-    .lang-switch span {
-      font-weight: 600;
-      color: var(--dark);
-    }
-
     @media (max-width: 480px) {
       nav { padding: 1rem 1.25rem; }
       .hero { padding: 3.5rem 1.25rem 3rem; }
@@ -524,33 +523,33 @@
 <body>
 
   <nav>
-    <a class="wordmark" href="/"><img src="/icons/Fyra-Icon-app-dark-1024.png" alt="Fyra"><span>Fyra</span></a>
+    <a class="wordmark" href="/zh-hant/"><img src="/icons/Fyra-Icon-app-dark-1024.png" alt="Fyra"><span>Fyra</span></a>
     <div class="nav-right">
       <div class="lang-switch">
-        <span>EN</span>
+        <a href="/">EN</a>
         <a href="/zh-hans/">简体</a>
-        <a href="/zh-hant/">繁體</a>
+        <span>繁體</span>
       </div>
-      <a class="nav-cta" href="https://apps.apple.com/app/id6792294546">Download</a>
+      <a class="nav-cta" href="https://apps.apple.com/app/id6792294546">下載</a>
     </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge">AI-powered · iOS</div>
-    <h1>Your retirement date,<br>calculated by AI.</h1>
-    <p>Fyra's AI reads any brokerage or bank statement in seconds — then builds your complete forecast: net worth, cash flow, and exact years to financial independence.</p>
+    <div class="hero-badge">AI 驅動 · iOS</div>
+    <h1>你的退休日期，<br>由 AI 計算。</h1>
+    <p>Fyra 的 AI 能在數秒內讀取任何券商或銀行對帳單，然後建立你的完整預測：淨資產、現金流，以及距離財務自由的確切年數。</p>
     <div class="hero-actions">
-      <a class="btn-primary" href="https://apps.apple.com/app/id6792294546">Download on the App Store</a>
-      <a class="btn-secondary" href="#features">See features</a>
+      <a class="btn-primary" href="https://apps.apple.com/app/id6792294546">在 App Store 下載</a>
+      <a class="btn-secondary" href="#features">查看功能</a>
     </div>
 
     <div class="hero-mock">
-      <div class="calc-header">What's your FIRE number?</div>
+      <div class="calc-header">你的 FIRE 數字是多少？</div>
 
       <div class="calc-row">
         <div class="calc-row-top">
-          <span class="mock-label">Annual Spending</span>
+          <span class="mock-label">年度支出</span>
           <span class="calc-val" id="spendVal">SGD 60,000</span>
         </div>
         <input class="mock-slider" id="spendSlider" type="range" min="10000" max="400000" step="5000" value="60000">
@@ -558,7 +557,7 @@
 
       <div class="calc-row">
         <div class="calc-row-top">
-          <span class="mock-label">Withdrawal Rate</span>
+          <span class="mock-label">提取率</span>
           <span class="calc-val" id="rateVal">4.0%</span>
         </div>
         <input class="mock-slider" id="rateSlider" type="range" min="1" max="10" step="0.1" value="4">
@@ -567,23 +566,23 @@
       <div class="calc-divider"></div>
 
       <div class="calc-result">
-        <div class="calc-fire-label">Your FIRE Number</div>
+        <div class="calc-fire-label">你的 FIRE 數字</div>
         <div class="calc-fire-number" id="fireVal">SGD 1,500,000</div>
         <input class="mock-slider" id="fireSlider" type="range" min="250000" max="10000000" step="100000" value="1500000">
-        <div class="calc-formula" id="calcFormula">SGD 60,000 ÷ 4.0% rule</div>
+        <div class="calc-formula" id="calcFormula">SGD 60,000 ÷ 4.0% 法則</div>
       </div>
     </div>
 
-    <p class="hero-sub">Free to start · iOS 17+ · No ads, ever</p>
+    <p class="hero-sub">免費開始 · iOS 17+ · 永無廣告</p>
   </section>
 
   <script>
     var spend = 60000, rate = 4.0;
 
     function fmt(n) {
-      if (n >= 1000000) return "SGD " + (n / 1000000).toFixed(2) + "M";
-      if (n >= 1000)    return "SGD " + Math.round(n / 1000) + "K";
-      return "SGD " + n;
+      if (n >= 1000000) return "SGD " + (n / 1000000).toFixed(2) + "M";
+      if (n >= 1000)    return "SGD " + Math.round(n / 1000) + "K";
+      return "SGD " + n;
     }
     function fmtRate(r) {
       return (r % 1 === 0 ? r.toFixed(0) : r.toFixed(1)) + "%";
@@ -599,7 +598,7 @@
       document.getElementById("spendVal").textContent  = fmt(spend);
       document.getElementById("rateVal").textContent   = fmtRate(rate);
       document.getElementById("fireVal").textContent   = fmt(fn);
-      document.getElementById("calcFormula").textContent = fmt(spend) + " ÷ " + fmtRate(rate) + " rule";
+      document.getElementById("calcFormula").textContent = fmt(spend) + " ÷ " + fmtRate(rate) + " 法則";
 
       var ss = document.getElementById("spendSlider");
       var rs = document.getElementById("rateSlider");
@@ -627,50 +626,50 @@
 
   <!-- FEATURES -->
   <section class="features" id="features">
-    <p class="section-label">What's inside</p>
-    <h2 class="section-title">Everything a serious FIRE tracker needs</h2>
+    <p class="section-label">核心功能</p>
+    <h2 class="section-title">認真的 FIRE 追蹤者所需的一切</h2>
     <div class="feature-grid">
 
       <div class="feature-card">
-        <div class="feature-icon"><img src="/icons/Fyra-Icon-calc-1024.png" alt="FIRE Calculator"></div>
-        <h3>FIRE Calculator</h3>
-        <p>Set your withdrawal rate, monthly savings, or target income. Recalculates instantly, works fully offline.</p>
-        <span class="feature-tag tag-free">Free</span>
+        <div class="feature-icon"><img src="/icons/Fyra-Icon-calc-1024.png" alt="FIRE 計算器"></div>
+        <h3>FIRE 計算器</h3>
+        <p>設定你的提取率、每月儲蓄或目標收入。即時重新計算，完全離線運作。</p>
+        <span class="feature-tag tag-free">免費版</span>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon"><img src="/icons/Fyra-Icon-cashflow-1024.png" alt="Cash Flow Tracking"></div>
-        <h3>Cash Flow Tracking</h3>
-        <p>Track income and expenses — one-time or recurring. Dividend line items, future income entries (CPF, pension), and a 6-month overview of your spending trends.</p>
-        <span class="feature-tag tag-free">Free</span>
+        <div class="feature-icon"><img src="/icons/Fyra-Icon-cashflow-1024.png" alt="現金流追蹤"></div>
+        <h3>現金流追蹤</h3>
+        <p>追蹤收入與支出——一次性或經常性。股息項目、未來收入項目（CPF、退休金），以及 6 個月的支出趨勢概覽。</p>
+        <span class="feature-tag tag-free">免費版</span>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon"><img src="/icons/Fyra-Icon-aiimport-1024.png" alt="AI Assistant"></div>
-        <h3>AI Assistant</h3>
-        <p>Import portfolios from screenshots, ask questions about your finances, and get personalized guidance. Your AI financial companion.</p>
-        <span class="feature-tag tag-pro">Pro · 1M tokens / month</span>
+        <div class="feature-icon"><img src="/icons/Fyra-Icon-aiimport-1024.png" alt="AI 助手"></div>
+        <h3>AI 助手</h3>
+        <p>透過截圖匯入投資組合，詢問有關你的財務問題，並獲得個人化指引。你的 AI 財務夥伴。</p>
+        <span class="feature-tag tag-pro">Pro · 100 萬 tokens / 月</span>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon"><img src="/icons/Fyra-Icon-currency-1024.png" alt="Multi-currency"></div>
-        <h3>Multi-currency</h3>
-        <p>SGD, USD, EUR, GBP, AUD, JPY, HKD, CNY — all converted to your base currency with live FX rates. No more manual conversions.</p>
-        <span class="feature-tag tag-free">Free</span>
+        <div class="feature-icon"><img src="/icons/Fyra-Icon-currency-1024.png" alt="多幣種"></div>
+        <h3>多幣種</h3>
+        <p>SGD、USD、EUR、GBP、AUD、JPY、HKD、CNY——全部以即時匯率轉換為你的基準貨幣。不再需要手動換算。</p>
+        <span class="feature-tag tag-free">免費版</span>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon"><img src="/icons/Fyra-Icon-buckets-new-1024.png" alt="Asset Buckets"></div>
-        <h3>Asset Buckets</h3>
-        <p>Track your accounts — equities, CPF, cash, property — as buckets. Add holdings for live stock prices and dividend forecasting.</p>
-        <span class="feature-tag tag-pro">5 free · Unlimited on Pro</span>
+        <div class="feature-icon"><img src="/icons/Fyra-Icon-buckets-new-1024.png" alt="資產帳戶"></div>
+        <h3>資產帳戶</h3>
+        <p>以帳戶追蹤你的資產——股票、CPF、現金、房產。新增持倉以獲取即時股價和股息預測。</p>
+        <span class="feature-tag tag-pro">免費 5 個 · Pro 版無上限</span>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon"><img src="/icons/Fyra-Icon-insight-1024.png" alt="AI Insights"></div>
-        <h3>AI Insights</h3>
-        <p>Personalized insights about your finances — concentration risk, FIRE date movement, dividend growth, expense spikes, and more.</p>
-        <span class="feature-tag tag-pro">Pro</span>
+        <div class="feature-icon"><img src="/icons/Fyra-Icon-insight-1024.png" alt="AI 洞察"></div>
+        <h3>AI 洞察</h3>
+        <p>關於你的財務的個人化洞察——集中風險、FIRE 日期變動、股息增長、支出異常等。</p>
+        <span class="feature-tag tag-pro">Pro 版</span>
       </div>
 
     </div>
@@ -679,45 +678,45 @@
   <!-- STAGE SECTION -->
   <section class="stages">
     <div class="stages-inner">
-      <p class="section-label">Stage-aware</p>
-      <h2 class="section-title">Built for both sides of FIRE</h2>
+      <p class="section-label">階段感知</p>
+      <h2 class="section-title">為 FIRE 的兩個階段而生</h2>
       <div class="stage-cards">
 
         <div class="stage-card accum">
-          <div class="stage-pill pill-gold">Accumulation</div>
-          <h3>Building toward your number</h3>
-          <p>Track net worth against your FIRE target. See your savings rate, surplus, and exact years to FIRE — updated every time you open the app.</p>
+          <div class="stage-pill pill-gold">累積期</div>
+          <h3>朝著你的目標數字邁進</h3>
+          <p>追蹤淨資產與你的 FIRE 目標的差距。查看你的儲蓄率、盈餘，以及距離 FIRE 的確切年數——每次開啟應用程式時即時更新。</p>
           <div class="stage-metrics">
             <div class="metric">
-              <span class="metric-label">To FIRE</span>
-              <span class="metric-value-gold">8.4 yrs</span>
+              <span class="metric-label">距離 FIRE</span>
+              <span class="metric-value-gold">8.4 年</span>
             </div>
             <div class="metric">
-              <span class="metric-label">Savings Rate</span>
+              <span class="metric-label">儲蓄率</span>
               <span class="metric-value-gold">54%</span>
             </div>
             <div class="metric">
-              <span class="metric-label">Surplus</span>
-              <span class="metric-value-gold">+$4,200/mo</span>
+              <span class="metric-label">盈餘</span>
+              <span class="metric-value-gold">+$4,200 / 月</span>
             </div>
           </div>
         </div>
 
         <div class="stage-card decum">
-          <div class="stage-pill pill-amethyst">Decumulation</div>
-          <h3>Living off your portfolio</h3>
-          <p>Monitor your drawdown rate, runway, and dividend cover. Know exactly when passive income covers your expenses — and get alerted when it does.</p>
+          <div class="stage-pill pill-amethyst">提取期</div>
+          <h3>靠投資組合生活</h3>
+          <p>監控你的提取率、資金跑道和股息覆蓋率。精確掌握被動收入何時能覆蓋你的支出——並在達成時收到提醒。</p>
           <div class="stage-metrics">
             <div class="metric">
-              <span class="metric-label">Runway</span>
-              <span class="metric-value-amethyst">∞ covered</span>
+              <span class="metric-label">資金跑道</span>
+              <span class="metric-value-amethyst">完全覆蓋</span>
             </div>
             <div class="metric">
-              <span class="metric-label">Drawdown</span>
-              <span class="metric-value-amethyst">3.2%/mo</span>
+              <span class="metric-label">提取率</span>
+              <span class="metric-value-amethyst">3.2% / 月</span>
             </div>
             <div class="metric">
-              <span class="metric-label">Div Cover</span>
+              <span class="metric-label">股息覆蓋</span>
               <span class="metric-value-amethyst">112%</span>
             </div>
           </div>
@@ -729,40 +728,40 @@
 
   <!-- PRICING -->
   <section class="pricing" id="pricing">
-    <p class="section-label">Pricing</p>
-    <h2 class="section-title">Free to start. Pro when you're ready.</h2>
+    <p class="section-label">定價</p>
+    <h2 class="section-title">免費開始。準備好了再升級 Pro。</h2>
     <div class="pricing-cards">
 
       <div class="pricing-card">
-        <p class="plan-name">Free</p>
+        <p class="plan-name">免費版</p>
         <p class="plan-price">$0</p>
-        <p class="plan-sub">Free forever. No credit card required.</p>
+        <p class="plan-sub">永久免費。無需信用卡。</p>
         <ul class="plan-features">
-          <li>FIRE Calculator</li>
-          <li>5 asset buckets · 20 holdings</li>
-          <li>Expense tracking</li>
-          <li>Goal tracking</li>
-          <li>AI import trial</li>
-          <li>Live stock prices + dividends</li>
-          <li>Multi-currency with live FX</li>
-          <li>FIRE Sensitivity Table</li>
-          <li>Monthly digest</li>
+          <li>FIRE 計算器</li>
+          <li>5 個資產帳戶 · 20 個持倉</li>
+          <li>支出追蹤</li>
+          <li>目標追蹤</li>
+          <li>AI 匯入試用</li>
+          <li>即時股價 + 股息</li>
+          <li>多幣種即時匯率</li>
+          <li>FIRE 敏感度分析表</li>
+          <li>每月摘要</li>
         </ul>
       </div>
 
       <div class="pricing-card pro">
-        <p class="plan-name">Pro</p>
-        <p class="plan-price" id="pro-price">$3.99<span style="font-size:1rem;font-weight:500"> / month</span></p>
-        <p class="plan-sub" id="pro-annual">Or $39.99 / year — save over 16%.</p>
+        <p class="plan-name">Pro 版</p>
+        <p class="plan-price" id="pro-price">$3.99<span style="font-size:1rem;font-weight:500"> / 月</span></p>
+        <p class="plan-sub" id="pro-annual">或 $39.99 / 年 — 節省超過 16%。</p>
         <ul class="plan-features">
-          <li>Everything in Free, plus:</li>
-          <li>Unlimited assets and holdings</li>
-          <li>Unlimited financial goals</li>
-          <li>AI assistant — import, analyze, and plan</li>
-          <li>1,000,000 AI tokens / month</li>
-          <li>Exclusive AI-powered FIRE insights</li>
-          <li>Export your data to CSV anytime</li>
-          <li>Early access to new features</li>
+          <li>包含免費版全部功能，另外還有：</li>
+          <li>無限資產帳戶與持倉</li>
+          <li>無限財務目標</li>
+          <li>AI 助手——匯入、分析、規劃</li>
+          <li>每月 1,000,000 AI tokens</li>
+          <li>獨家 AI 驅動 FIRE 洞察</li>
+          <li>隨時匯出資料為 CSV</li>
+          <li>搶先體驗新功能</li>
         </ul>
       </div>
 
@@ -772,29 +771,29 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
-        <a class="wordmark" href="/"><img src="/icons/Fyra-Icon-app-dark-1024.png" alt="Fyra"><span>Fyra</span></a>
-        <p>Track your path to financial independence. Built for serious FIRE practitioners.</p>
+        <a class="wordmark" href="/zh-hant/"><img src="/icons/Fyra-Icon-app-dark-1024.png" alt="Fyra"><span>Fyra</span></a>
+        <p>追蹤你通往財務自由的道路。專為認真的 FIRE 實踐者打造。</p>
       </div>
       <div class="footer-col">
-        <h4>Product</h4>
+        <h4>產品</h4>
         <ul>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="https://apps.apple.com/app/id6792294546">Download</a></li>
+          <li><a href="#features">功能</a></li>
+          <li><a href="#pricing">定價</a></li>
+          <li><a href="https://apps.apple.com/app/id6792294546">下載</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Legal</h4>
+        <h4>法律</h4>
         <ul>
-          <li><a href="/privacy/">Privacy Policy</a></li>
-          <li><a href="/terms/">Terms of Service</a></li>
+          <li><a href="/zh-hant/privacy/">隱私權政策</a></li>
+          <li><a href="/zh-hant/terms/">服務條款</a></li>
           <li><a href="mailto:contact@fyra.cc">contact@fyra.cc</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 Fyra. All rights reserved.</p>
-      <p>Made in Singapore 🇸🇬</p>
+      <p>&copy; 2026 Fyra. 保留所有權利。</p>
+      <p>新加坡製造 &#x1f1f8;&#x1f1ec;</p>
     </div>
   </footer>
 
@@ -832,8 +831,8 @@
       if (!tier) return;
       var priceEl = document.getElementById("pro-price");
       var annualEl = document.getElementById("pro-annual");
-      if (priceEl) priceEl.innerHTML = tier.monthly + '<span style="font-size:1rem;font-weight:500"> / month</span>';
-      if (annualEl) annualEl.textContent = "Or " + tier.annual + " / year — save over " + tier.pct + ".";
+      if (priceEl) priceEl.innerHTML = tier.monthly + '<span style="font-size:1rem;font-weight:500"> / 月</span>';
+      if (annualEl) annualEl.textContent = "或 " + tier.annual + " / 年 — 節省超過 " + tier.pct + "。";
     })();
   </script>
 

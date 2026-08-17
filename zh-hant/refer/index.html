@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fyra — Bonus AI Sessions</title>
+  <title>Fyra — 額外 AI 使用次數</title>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <meta name="description" content="You've received bonus AI sessions for Fyra, the FIRE tracker.">
-  <meta property="og:title" content="You've received bonus AI sessions on Fyra">
-  <meta property="og:description" content="Open Fyra to claim your free AI sessions and accelerate your FIRE journey.">
-  <meta property="og:image" content="https://fyra.cc/icons/Fyra-Icon-app-dark-1024.png">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary">
   <link rel="alternate" hreflang="en" href="https://fyra.cc/refer/">
   <link rel="alternate" hreflang="zh-Hans" href="https://fyra.cc/zh-hans/refer/">
   <link rel="alternate" hreflang="zh-Hant" href="https://fyra.cc/zh-hant/refer/">
   <link rel="alternate" hreflang="x-default" href="https://fyra.cc/refer/">
+  <meta name="description" content="你已獲得 Fyra（FIRE 追蹤工具）的額外 AI 使用次數。">
+  <meta property="og:title" content="你在 Fyra 獲得了額外 AI 使用次數">
+  <meta property="og:description" content="開啟 Fyra 領取你的免費 AI 使用次數，加速你的 FIRE 旅程。">
+  <meta property="og:image" content="https://fyra.cc/icons/Fyra-Icon-app-dark-1024.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -225,7 +225,7 @@
 <body>
 
   <nav>
-    <a class="wordmark" href="https://fyra.cc">
+    <a class="wordmark" href="https://fyra.cc/zh-hant/">
       <img src="https://fyra.cc/icons/Fyra-Icon-app-dark-1024.png" alt="Fyra">
       <span>Fyra</span>
     </a>
@@ -235,7 +235,7 @@
     <!-- Loading -->
     <div class="card" id="state-loading">
       <div class="icon-wrap loading"><div class="spinner"></div></div>
-      <p class="subtitle">Checking your code…</p>
+      <p class="subtitle">正在驗證你的代碼…</p>
     </div>
 
     <!-- Valid referral -->
@@ -258,35 +258,35 @@
           <circle cx="18" cy="11" r="2" fill="#f5c518"/>
         </svg>
       </div>
-      <h1>Your friend invited you<br>to Fyra</h1>
-      <p class="subtitle">They sent you <strong id="referral-count-inline"></strong> bonus AI sessions on Fyra as a welcome gift.</p>
+      <h1>你的朋友邀請你<br>加入 Fyra</h1>
+      <p class="subtitle">他們送你 <strong id="referral-count-inline"></strong> 次額外 AI 使用次數作為歡迎禮物。</p>
       <div class="code-row">
         <span class="code-text" id="code-display">—</span>
-        <button class="code-copy" id="copy-btn" onclick="copyCode()">Copy code</button>
+        <button class="code-copy" id="copy-btn" onclick="copyCode()">複製代碼</button>
       </div>
-      <button class="btn-primary" onclick="openApp()">Open in Fyra</button>
-      <a class="btn-secondary" id="store-link-referral" href="#" onclick="copyAndStore(event)">Download Fyra</a>
-      <p class="note">Open in Fyra to claim instantly. Don't have it? Download free — your code is saved to clipboard.</p>
+      <button class="btn-primary" onclick="openApp()">在 Fyra 中開啟</button>
+      <a class="btn-secondary" id="store-link-referral" href="#" onclick="copyAndStore(event)">下載 Fyra</a>
+      <p class="note">在 Fyra 中開啟即可立即領取。還沒有？免費下載——你的代碼已複製到剪貼簿。</p>
     </div>
 
     <!-- Invalid / expired / maxed -->
     <div class="card hidden" id="state-invalid">
       <div class="icon-wrap error">✕</div>
-      <h1 id="invalid-title">This link has expired</h1>
-      <p class="subtitle" id="invalid-subtitle">This link is no longer valid. Ask your friend for a fresh one.</p>
-      <a class="btn-primary" href="https://fyra.cc">Learn about Fyra</a>
+      <h1 id="invalid-title">此連結已過期</h1>
+      <p class="subtitle" id="invalid-subtitle">此連結已失效。請向你的朋友索取新連結。</p>
+      <a class="btn-primary" href="https://fyra.cc/zh-hant/">了解 Fyra</a>
     </div>
 
     <!-- No code in URL -->
     <div class="card hidden" id="state-nocode">
       <div class="icon-wrap referral">✨</div>
-      <h1>Share Fyra with<br>your friends</h1>
-      <p class="subtitle">Invite friends to Fyra and you both get bonus AI sessions. Open the app to generate your link.</p>
-      <a class="btn-primary" href="https://fyra.cc">Learn about Fyra</a>
+      <h1>與朋友分享<br>Fyra</h1>
+      <p class="subtitle">邀請朋友加入 Fyra，你們雙方都能獲得額外的 AI 使用次數。開啟應用程式即可產生你的連結。</p>
+      <a class="btn-primary" href="https://fyra.cc/zh-hant/">了解 Fyra</a>
     </div>
   </main>
 
-  <script src="config.js"></script>
+  <script src="/refer/config.js"></script>
   <script>
 
     const params = new URLSearchParams(window.location.search);
@@ -301,8 +301,8 @@
     function copyCode() {
       navigator.clipboard.writeText(resolvedCode).catch(() => {});
       const btn = document.getElementById('copy-btn');
-      btn.textContent = '✓ Copied';
-      setTimeout(() => { btn.textContent = 'Copy code'; }, 2000);
+      btn.textContent = '✓ 已複製';
+      setTimeout(() => { btn.textContent = '複製代碼'; }, 2000);
     }
 
     function copyAndStore(e) {
@@ -347,11 +347,11 @@
 
         if (!data.valid) {
           const titles = {
-            invalid_code:    ['This link is invalid', 'This code doesn\'t exist.'],
-            expired:         ['This link has expired', 'This code is no longer active.'],
-            max_uses_reached:['This link is no longer available', 'All sessions from this code have been claimed.']
+            invalid_code:    ['此連結無效', '此代碼不存在。'],
+            expired:         ['此連結已過期', '此代碼已失效。'],
+            max_uses_reached:['此連結已無法使用', '此代碼的所有使用次數已被領取。']
           };
-          const [title, subtitle] = titles[data.error] || ['This link is invalid', 'Something went wrong.'];
+          const [title, subtitle] = titles[data.error] || ['此連結無效', '發生錯誤。'];
           document.getElementById('invalid-title').textContent = title;
           document.getElementById('invalid-subtitle').textContent = subtitle;
           show('state-invalid');
