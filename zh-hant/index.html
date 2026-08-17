@@ -94,6 +94,20 @@
       font-weight: 600;
       color: var(--dark);
     }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .nav-links a {
+      color: var(--mid);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .nav-links a:hover {
+      color: var(--dark);
+    }
 
     /* HERO */
     .hero {
@@ -525,6 +539,10 @@
   <nav>
     <a class="wordmark" href="/zh-hant/"><img src="/icons/Fyra-Icon-app-dark-1024.png" alt="Fyra"><span>Fyra</span></a>
     <div class="nav-right">
+      <div class="nav-links">
+        <a href="#features">功能</a>
+        <a href="#pricing">定價</a>
+      </div>
       <div class="lang-switch">
         <a href="/">EN</a>
         <a href="/zh-hans/">简体</a>
@@ -729,7 +747,7 @@
   <!-- PRICING -->
   <section class="pricing" id="pricing">
     <p class="section-label">定價</p>
-    <h2 class="section-title">免費開始。準備好了再升級 Pro。</h2>
+    <h2 class="section-title">免費體驗，隨時升級 Pro</h2>
     <div class="pricing-cards">
 
       <div class="pricing-card">
