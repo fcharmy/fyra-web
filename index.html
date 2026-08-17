@@ -41,12 +41,16 @@
       z-index: 100;
       background: var(--cream);
       padding: 1.25rem 2rem;
+      transition: box-shadow 0.2s;
+    }
+    nav.scrolled {
+      box-shadow: 0 1px 8px rgba(0,0,0,0.08);
     }
     .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 1000px;
+      max-width: 900px;
       margin: 0 auto;
     }
     .wordmark {
@@ -868,6 +872,12 @@
       if (priceEl) priceEl.innerHTML = tier.monthly + '<span style="font-size:1rem;font-weight:500"> / month</span>';
       if (annualEl) annualEl.textContent = "Or " + tier.annual + " / year — save over " + tier.pct + ".";
     })();
+  </script>
+
+  <script>
+    window.addEventListener('scroll', function() {
+      document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 0);
+    });
   </script>
 
 </body>
