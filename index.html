@@ -40,10 +40,12 @@
       top: 0;
       z-index: 100;
       background: var(--cream);
+      padding: 1.25rem 2rem;
+    }
+    .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.25rem 2rem;
       max-width: 1000px;
       margin: 0 auto;
     }
@@ -547,6 +549,7 @@
 <body>
 
   <nav>
+    <div class="nav-inner">
     <div class="nav-left">
       <a class="wordmark" href="/"><img src="/icons/Fyra-Icon-app-dark-1024.png" alt="Fyra"><span>Fyra</span></a>
       <div class="nav-links">
@@ -561,6 +564,7 @@
         <a href="/zh-hant/">繁體</a>
       </div>
       <a class="nav-cta" href="https://apps.apple.com/app/id6792294546">Download</a>
+    </div>
     </div>
   </nav>
 
