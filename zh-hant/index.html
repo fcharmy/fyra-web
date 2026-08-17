@@ -94,6 +94,11 @@
       font-weight: 600;
       color: var(--dark);
     }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
     .nav-links {
       display: flex;
       align-items: center;
@@ -537,12 +542,14 @@
 <body>
 
   <nav>
-    <a class="wordmark" href="/zh-hant/"><img src="/icons/Fyra-Icon-app-dark-1024.png" alt="Fyra"><span>Fyra</span></a>
-    <div class="nav-right">
+    <div class="nav-left">
+      <a class="wordmark" href="/zh-hant/"><img src="/icons/Fyra-Icon-app-dark-1024.png" alt="Fyra"><span>Fyra</span></a>
       <div class="nav-links">
         <a href="#features">功能</a>
         <a href="#pricing">定價</a>
       </div>
+    </div>
+    <div class="nav-right">
       <div class="lang-switch">
         <a href="/">EN</a>
         <a href="/zh-hans/">简体</a>
