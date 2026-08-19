@@ -62,16 +62,22 @@
     const tokenHash = params.get("token_hash") || fragment.get("token_hash");
     const appURL = "cc.fyra.app://auth-reset" + query + hash;
     const button = document.getElementById("open-app");
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     if (error || !tokenHash) {
       document.getElementById("title").textContent = "Reset link expired";
       document.getElementById("message").textContent =
         error || "This password reset link is invalid or incomplete. Request a new link in Fyra.";
-      button.textContent = "Back to Fyra";
-      button.href = "cc.fyra.app://";
-    } else {
+      button.textContent = isMobile ? "Back to Fyra" : "Fyra.cc";
+      button.href = isMobile ? "cc.fyra.app://" : "https://fyra.cc";
+    } else if (isMobile) {
       button.href = appURL;
       setTimeout(function () { window.location.href = appURL; }, 600);
+    } else {
+      document.getElementById("message").textContent =
+        "Open this email on your phone to reset your password.";
+      button.textContent = "Fyra.cc";
+      button.href = "https://fyra.cc";
     }
   </script>
 </body>

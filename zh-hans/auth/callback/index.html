@@ -93,6 +93,7 @@
     const accessToken = hash.includes("access_token=");
     const error = params.get("error");
     const errorDesc = params.get("error_description");
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     const icon = document.getElementById("icon");
     const title = document.getElementById("title");
@@ -107,24 +108,29 @@
       msg.textContent = errorDesc
         ? decodeURIComponent(errorDesc.replace(/\+/g, " "))
         : "此确认链接已失效。请重新注册或请求一个新链接。";
-      btn.textContent = "返回 Fyra";
-      btn.href = "cc.fyra.app://";
+      btn.textContent = isMobile ? "返回 Fyra" : "Fyra.cc";
+      btn.href = isMobile ? "cc.fyra.app://" : "https://fyra.cc";
     } else if (code || accessToken) {
-      const appUrl = "cc.fyra.app://auth-callback" + window.location.search + hash;
-      btn.href = appUrl;
-
-      var secs = 3;
-      countdown.textContent = secs + " 秒后跳转…";
-      var timer = setInterval(function () {
-        secs--;
-        if (secs <= 0) {
-          clearInterval(timer);
-          countdown.textContent = "";
-          window.location.href = appUrl;
-        } else {
-          countdown.textContent = secs + " 秒后跳转…";
-        }
-      }, 1000);
+      if (isMobile) {
+        const appUrl = "cc.fyra.app://auth-callback" + window.location.search + hash;
+        btn.href = appUrl;
+        var secs = 3;
+        countdown.textContent = secs + " 秒后跳转…";
+        var timer = setInterval(function () {
+          secs--;
+          if (secs <= 0) {
+            clearInterval(timer);
+            countdown.textContent = "";
+            window.location.href = appUrl;
+          } else {
+            countdown.textContent = secs + " 秒后跳转…";
+          }
+        }, 1000);
+      } else {
+        msg.innerHTML = "请在手机上打开 Fyra 并登录。";
+        btn.textContent = "Fyra.cc";
+        btn.href = "https://fyra.cc";
+      }
     } else {
       icon.className = "icon plain";
       icon.textContent = "↓";
