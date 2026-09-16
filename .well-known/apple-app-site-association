@@ -8,6 +8,22 @@
         ],
         "components": [
           {
+            "/": "/open*",
+            "?": {
+              "browser": "true"
+            },
+            "exclude": true,
+            "comment": "Explicit browser fallback stays on the website"
+          },
+          {
+            "/": "/open",
+            "comment": "Open AI Assistant"
+          },
+          {
+            "/": "/open/",
+            "comment": "Open AI Assistant"
+          },
+          {
             "/": "/auth/reset",
             "comment": "Password recovery without a trailing slash"
           },

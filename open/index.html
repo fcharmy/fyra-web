@@ -14,7 +14,7 @@ document.getElementById('privacy').href = prefix + '/privacy/';
 document.getElementById('terms').href = prefix + '/terms/';
 // The existing app route opens AI Assistant. The visible button remains when a
 // browser blocks automatic scheme navigation; there is no timed Store redirect.
-if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+if (new URLSearchParams(location.search).get('browser') !== 'true' && /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
   setTimeout(() => { if (!document.hidden) location.href = 'cc.fyra.app://quick/aiAssistant'; }, 250);
 }
 </script></body></html>
